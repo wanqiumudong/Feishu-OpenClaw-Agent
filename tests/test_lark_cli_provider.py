@@ -15,8 +15,8 @@ class LarkCliProviderTest(unittest.TestCase):
                 "MEETINGFLOW_PROVIDER": "lark_cli",
                 "MEETINGFLOW_DRY_RUN": "false",
                 "LARK_CLI_BIN": "custom-lark",
-                "FEISHU_DOC_TEST_TOKEN": "doc-secret-token",
-                "FEISHU_MINUTES_TEST_TOKEN": "minutes-secret-token",
+                "FEISHU_DOC_TEST_TOKEN": "doc-test-token",
+                "FEISHU_MINUTES_TEST_TOKEN": "minutes-test-token",
             },
             clear=False,
         ):
@@ -25,8 +25,8 @@ class LarkCliProviderTest(unittest.TestCase):
         self.assertEqual(settings.provider, "lark_cli")
         self.assertFalse(settings.dry_run)
         self.assertEqual(settings.lark_cli_bin, "custom-lark")
-        self.assertEqual(settings.feishu_doc_test_token, "doc-secret-token")
-        self.assertEqual(settings.feishu_minutes_test_token, "minutes-secret-token")
+        self.assertEqual(settings.feishu_doc_test_token, "doc-test-token")
+        self.assertEqual(settings.feishu_minutes_test_token, "minutes-test-token")
 
     def test_lark_cli_provider_adds_readonly_items_without_leaking_tokens(self):
         calls = []
@@ -47,8 +47,8 @@ class LarkCliProviderTest(unittest.TestCase):
             provider="lark_cli",
             dry_run=True,
             lark_cli_bin="lark-cli",
-            feishu_doc_test_token="doc-secret-token",
-            feishu_minutes_test_token="minutes-secret-token",
+            feishu_doc_test_token="doc-test-token",
+            feishu_minutes_test_token="minutes-test-token",
         )
         provider = LarkCliProvider(settings, fallback=MockProvider(settings), runner=fake_runner)
 
@@ -62,13 +62,13 @@ class LarkCliProviderTest(unittest.TestCase):
         self.assertEqual(minutes.kind, "minutes")
         self.assertIn("测试飞书文档", doc.content)
         self.assertIn("测试会议纪要", minutes.content)
-        self.assertNotIn("doc-secret-token", doc.source_path)
-        self.assertNotIn("minutes-secret-token", minutes.source_path)
+        self.assertNotIn("doc-test-token", doc.source_path)
+        self.assertNotIn("minutes-test-token", minutes.source_path)
         self.assertEqual(
             calls,
             [
-                ["docs", "+fetch", "--api-version", "v2", "--as", "user", "--doc", "doc-secret-token", "--format", "json"],
-                ["vc", "+notes", "--as", "user", "--minute-tokens", "minutes-secret-token", "--format", "json"],
+                ["docs", "+fetch", "--api-version", "v2", "--as", "user", "--doc", "doc-test-token", "--format", "json"],
+                ["vc", "+notes", "--as", "user", "--minute-tokens", "minutes-test-token", "--format", "json"],
             ],
         )
 
@@ -90,7 +90,7 @@ class LarkCliProviderTest(unittest.TestCase):
         settings = Settings.default()
         provider = LarkCliProvider(settings, fallback=MockProvider(settings), runner=lambda _args: payload)
 
-        item = provider.fetch_doc("doc-secret-token")
+        item = provider.fetch_doc("doc-test-token")
 
         self.assertEqual(item.title, "MeetingFlow Agent 测试文档")
         self.assertIn("本文档用于验证真实飞书文档读取链路。", item.content)
