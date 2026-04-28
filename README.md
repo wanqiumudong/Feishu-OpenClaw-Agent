@@ -1,223 +1,252 @@
-# Feishu Workbench
+# MeetingFlow Agent
 
-飞书 AI 校园挑战赛工作仓库。
+面向飞书 AI 校园挑战赛课题一“办公场景驱动的智能知识助手”的项目仓库。
 
-本仓库用于日常实验、草稿、脚本、Prompt 迭代、Demo 原型和中间材料沉淀。对外展示内容会定期整理到 `/data/yphu/project/feishu` 对应的公开展示仓库。
+MeetingFlow Agent 聚焦 **会议 + 项目推进** 场景，围绕“智能会议纪要 2.0 升级项目”构建一个可运行、可展示、可继续接入真实飞书数据源的办公知识助手原型。
 
-## 1. 项目方向
+当前版本是 **mock-driven bootstrap MVP + 真实飞书文档只读验证**：
 
-赛道：飞书 OpenClaw 赛道
+- 默认使用本地 mock 办公数据，不依赖真实飞书账号、真实 token 或真实 API 权限。
+- 已接入官方 `larksuite/cli` 的只读 provider 边界，并验证过测试飞书文档读取与归一化。
+- 会议纪要真实读取、事件触发、消息卡片、任务写入、Base 写入和 OpenClaw channel 仍未完成。
+- 仓库不包含任何真实 token、secret、cookie、App Secret 或真实企业数据。
 
-课题：企业办公知识整合与分发 Agent
+## 工作内容
 
-项目暂定名：KnowledgeFlow Agent
+当前仓库已经完成以下工作：
 
-一句话定义：
+1. **场景建模**
+   - 将赛题方向收敛到“会议与项目推进”。
+   - 定义了会前、会后、项目推进对账和带来源问答四类核心工作流。
+   - 用“智能会议纪要 2.0 升级项目”作为统一 demo 场景。
 
-基于飞书 OpenClaw、飞书 CLI/API 与大模型能力，整合飞书云文档、Wiki、群聊、会议纪要、任务和多维表格中的企业知识，提供带来源的精准问答，并根据办公场景主动分发相关知识。
+2. **mock 办公数据**
+   - 本地构造 Docs、会议纪要、群聊消息、任务、日历事件和推进表数据。
+   - 数据只用于 demo，不含真实企业信息或真实用户隐私。
 
-## 2. 核心问题
+3. **最小 Agent 框架**
+   - `MockProvider`：读取本地 mock 数据。
+   - `LarkCliProvider`：通过官方 `lark-cli` 读取测试飞书文档，并预留会议纪要读取入口，统一归一化为 `KnowledgeItem`。
+   - Retriever：基于关键词的轻量检索。
+   - Pipelines：QA、会前背景包、会后行动项、推进总表对账。
+   - Renderer：生成 Markdown 输出并写入 `outputs/`。
 
-企业办公知识通常分散在多个飞书对象中：
+4. **已验证能力**
+   - mock 模式下四条 demo 命令可运行。
+   - tests 可通过。
+   - 官方 `lark-cli` 已完成本机安装、授权和测试文档读取验证。
+   - 真实测试文档可进入 QA pipeline，来源会脱敏为 `feishu://docs/...`，不会暴露原始文档 token。
 
-- 群聊里有临时讨论和隐性结论。
-- 云文档 / Wiki 里有正式方案、SOP、FAQ 和项目背景。
-- 会议纪要里有决策、行动项和风险。
-- 任务系统里有负责人、截止时间和执行状态。
-- 多维表格里有流程、评测、看板和结构化业务数据。
+## 当前能力
 
-用户面临的问题：
+### 1. 带来源问答
 
-- 不知道应该去哪里找资料。
-- 找到文档后仍需要自己判断哪份最新、哪段相关。
-- 新人 onboarding 成本高。
-- 会议前需要反复翻上下文。
-- 知识分发依赖人主动转发，容易遗漏。
+根据本地文档、会议纪要、群聊、任务和推进表回答问题，并输出来源。
 
-## 3. 产品目标
-
-本项目要做的不是通用聊天机器人，而是一个能在飞书办公场景中工作的知识 Agent。
-
-核心能力：
-
-- 知识接入：从飞书多源对象读取内容。
-- 知识整理：抽取主题、标签、来源、适用对象、更新时间、可信度。
-- 精准问答：用户在飞书中提问，Agent 返回答案和来源证据。
-- 主动分发：在新人入群、会议前、任务创建、项目阶段变化等场景推送相关知识。
-- 效果验证：用测试集和多维表格记录准确率、来源命中率、分发命中率和人工评分。
-
-## 4. Demo 场景
-
-建议 MVP 聚焦一个具体办公场景：AI 产品团队知识助手。
-
-模拟一个跨职能产品项目，例如“智能会议纪要升级”：
-
-- 产品经理维护 PRD。
-- 研发维护技术方案。
-- 测试维护测试清单。
-- 运营维护上线 SOP。
-- 团队通过群聊和会议推进决策。
-- 新成员需要快速理解项目背景。
-
-典型演示问题：
-
-- “灰度上线流程是什么？”
-- “这个功能上次评审结论是什么？”
-- “当前有哪些风险还没关闭？”
-- “我要接手测试，应该先看哪些资料？”
-- “明天评审会前需要补哪些背景？”
-
-典型主动分发：
-
-- 新人加入项目群时，推送 onboarding 知识包。
-- 会议前，推送相关背景、待讨论问题和历史决策。
-- 会议后，从纪要中抽取 action items 并推送负责人。
-- 任务创建后，推送对应 SOP、模板和注意事项。
-
-## 5. MVP 边界
-
-第一版只做足够打动评审的闭环，不追求大而全。
-
-必须完成：
-
-- 飞书对象中的样例知识数据。
-- 知识索引与检索。
-- 带来源的问答。
-- 至少两个主动分发场景。
-- 一套可复现评测用例。
-- Demo 录屏脚本。
-
-暂不优先：
-
-- 复杂权限体系。
-- 大规模企业知识库迁移。
-- 多租户管理。
-- 完整 UI 后台。
-- 模型微调。
-
-## 6. 技术构想
-
-### 6.1 入口层
-
-- OpenClaw 作为飞书中的 Agent 入口。
-- 飞书机器人或群聊 @Agent 作为用户交互入口。
-
-### 6.2 工具层
-
-- lark-cli / 飞书 API 读取与操作飞书对象。
-- 大模型负责信息抽取、问答生成和分发文案生成。
-- 本地脚本负责批处理、清洗、评测和调试。
-
-### 6.3 知识层
-
-知识条目建议包含：
-
-- `id`
-- `title`
-- `content`
-- `summary`
-- `source_type`
-- `source_id`
-- `source_url`
-- `tags`
-- `project`
-- `audience`
-- `updated_at`
-- `confidence`
-- `visibility`
-
-向量检索用于召回相关知识，结构化字段用于过滤场景、角色和时间。
-
-### 6.4 服务层
-
-核心模块：
-
-- `ingestion`：从飞书对象拉取数据。
-- `indexing`：清洗、切分、摘要、打标签、写入索引。
-- `retrieval`：按用户问题和上下文检索知识。
-- `answering`：生成带来源答案。
-- `distribution`：根据事件或规则主动分发知识。
-- `evaluation`：记录测试集、结果和指标。
-
-## 7. 评测设计
-
-评测不能只说“能回答”，需要有可量化指标。
-
-建议指标：
-
-- 问答准确率。
-- 来源引用命中率。
-- 知识召回 Top-K 命中率。
-- 主动分发命中率。
-- 人工满意度评分。
-- 平均响应延迟。
-- 覆盖数据源数量。
-
-测试用例类型：
-
-- 单文档事实问答。
-- 多文档综合问答。
-- 群聊结论问答。
-- 会议纪要决策问答。
-- SOP / FAQ 查询。
-- 新人 onboarding 分发。
-- 会前知识包分发。
-- 任务相关知识分发。
-
-## 8. 双仓库策略
-
-本仓库是工作仓库：
-
-- GitHub：`https://github.com/wanqiumudong/Feishu_Workbench`
-- 本地路径：`/data/yphu/project/feishu_workbench`
-
-公开展示仓库：
-
-- 本地路径：`/data/yphu/project/feishu`
-- 用途：只放希望观察员看到的稳定材料。
-
-工作原则：
-
-- 日常试错、草稿、半成品代码放在 workbench。
-- 阶段性成果整理后再同步到展示仓库。
-- 展示仓库每次更新都应像一次对外发布，内容完整、叙事清楚。
-- 两个仓库都不能提交 secrets、token、真实敏感数据。
-
-## 9. 目录规划
-
-后续建议目录结构：
-
-```text
-docs/
-  design/
-  reports/
-  demo/
-experiments/
-prompts/
-scripts/
-src/
-tests/
-local_data/
+```bash
+python -m feishu_workbench qa --question "上次技术评审会的主要风险是什么？"
 ```
 
-说明：
+### 2. 会前背景包
 
-- `docs/`：设计文档、评测报告、Demo 脚本。
-- `experiments/`：临时实验记录。
-- `prompts/`：抽取、问答、分发相关 Prompt。
-- `scripts/`：飞书 API 调试、数据导入、评测脚本。
-- `src/`：可复用代码。
-- `tests/`：单元测试和评测用例。
-- `local_data/`：本地样例数据，默认不提交真实敏感内容。
+根据会议事件生成会议目的、参会人、必读资料、历史关键决策、未关闭风险和待确认问题。
 
-## 10. 近期推进顺序
+```bash
+python -m feishu_workbench pre-meeting --event go_no_go_review
+```
 
-1. 固定 Demo 场景和样例知识资产。
-2. 设计知识条目 schema。
-3. 整理第一批飞书文档、会议纪要、SOP、FAQ 样例。
-4. 打通飞书数据读取链路。
-5. 完成最小知识索引和问答。
-6. 完成新人 onboarding 与会前知识包两个主动分发场景。
-7. 建立评测表和 Demo 脚本。
-8. 把稳定成果整理到展示仓库。
+### 3. 会后行动项
 
+从会议纪要中抽取会议结论、Action Items、负责人、截止时间和来源，生成任务创建预览。
+
+```bash
+python -m feishu_workbench post-meeting --minutes go_no_go_minutes
+```
+
+### 4. 推进总表对账
+
+根据任务、会议、群聊和推进表线索生成新增事项、状态更新和阻塞补全预览。
+
+```bash
+python -m feishu_workbench reconcile
+```
+
+## 当前边界
+
+当前版本**不包含**：
+
+- 完整真实飞书组织接入
+- 真实会议纪要读取的端到端验证
+- 事件订阅和会议结束自动触发
+- 飞书机器人消息或卡片投递
+- 飞书任务真实创建
+- Base 真实写入
+- OpenClaw channel
+- 多用户权限、生产部署和线上指标
+
+## 目录结构
+
+```text
+data/                 # mock 办公数据
+docs/                 # 场景、架构、MVP、Demo、接入计划和阶段文档
+outputs/              # 本地 demo 输出
+src/feishu_workbench/ # 最小 Agent 框架
+tests/                # smoke tests 和 provider tests
+```
+
+## 部署方法
+
+### 方式 A：本地 mock demo
+
+这是默认部署方式，不需要飞书账号或真实 API 权限。
+
+环境要求：
+
+- Python 3.10+
+
+安装：
+
+```bash
+cd feishu_workbench
+python -m pip install -e .
+```
+
+运行：
+
+```bash
+MEETINGFLOW_PROVIDER=mock python -m feishu_workbench qa --question "上次技术评审会的主要风险是什么？"
+MEETINGFLOW_PROVIDER=mock python -m feishu_workbench pre-meeting --event go_no_go_review
+MEETINGFLOW_PROVIDER=mock python -m feishu_workbench post-meeting --minutes go_no_go_minutes
+MEETINGFLOW_PROVIDER=mock python -m feishu_workbench reconcile
+```
+
+输出文件：
+
+- `outputs/qa_example.md`
+- `outputs/pre_meeting_go_no_go.md`
+- `outputs/post_meeting_actions.md`
+- `outputs/reconcile_board_summary.md`
+
+### 方式 B：真实飞书文档只读验证
+
+这个模式用于验证官方 `larksuite/cli` 读取真实测试飞书文档。只读模式不会发送消息、不会创建任务、不会写 Base。
+
+环境要求：
+
+- Python 3.10+
+- Node.js / npm
+- 官方 `@larksuite/cli`
+- 一个无敏感信息的测试飞书文档
+
+安装官方 CLI：
+
+```bash
+npm install -g @larksuite/cli
+lark-cli --version
+```
+
+如果 npm postinstall 下载 native binary 卡住，可参考 `docs/lark_cli_setup_check.md` 中记录的手动校验安装方式。
+
+初始化和授权：
+
+```bash
+lark-cli config init --new
+lark-cli auth login --recommend
+lark-cli doctor
+```
+
+可选：如果本机配置了代理，但希望 CLI 请求不经过代理，可先确认直连可用，再加：
+
+```bash
+export LARK_CLI_NO_PROXY=1
+```
+
+准备环境变量：
+
+```bash
+cp .env.example .env
+```
+
+编辑 `.env`，至少设置：
+
+```bash
+MEETINGFLOW_PROVIDER=lark_cli
+FEISHU_DOC_TEST_TOKEN=<your_test_doc_token_or_url>
+```
+
+当前工程不会自动读取 `.env` 文件。运行前需要把它导入 shell：
+
+```bash
+set -a
+source .env
+set +a
+```
+
+验证飞书文档读取：
+
+```bash
+lark-cli docs +fetch --api-version v2 --as user --doc "$FEISHU_DOC_TEST_TOKEN" --format json
+```
+
+运行 Agent：
+
+```bash
+python -m feishu_workbench qa --question "MeetingFlow Agent 的真实飞书文档读取链路测试结论是什么？"
+```
+
+如需验证会议纪要，只能使用真实测试会议产生的 `minute_token`：
+
+```bash
+export FEISHU_MINUTES_TEST_TOKEN=<your_test_minutes_token>
+lark-cli vc +notes --as user --minute-tokens "$FEISHU_MINUTES_TEST_TOKEN" --format json
+```
+
+会议纪要读取目前还没有完成端到端验证。
+
+## 测试
+
+```bash
+python -m unittest discover -s tests
+```
+
+当前测试覆盖：
+
+- mock 数据加载
+- QA 流程
+- 会前背景包
+- 会后行动项
+- 推进总表对账
+- `LarkCliProvider` 环境变量读取
+- `lark-cli docs +fetch v2` payload 归一化
+- token 不进入 `source_path`
+
+## 文档索引
+
+基础文档：
+
+- `docs/scene_definition.md`：场景定义
+- `docs/data_generation_strategy.md`：数据生成策略
+- `docs/mvp_scope.md`：当前 MVP 范围
+- `docs/architecture.md`：技术架构
+- `docs/demo_walkthrough.md`：Demo 演示路径
+- `docs/public_release_audit.md`：公开发布检查清单
+
+长期计划与接入文档：
+
+- `docs/current_state_audit.md`：当前工程审查
+- `docs/lark_cli_setup_check.md`：官方 lark-cli 本机安装与命令核对
+- `docs/feishu_integration_plan.md`：真实飞书接入路线
+- `docs/agent_orchestration_plan.md`：Agent 场景工作流编排
+- `docs/permission_and_security_plan.md`：权限、配置和安全边界
+- `docs/evaluation_plan.md`：评测与效果验证计划
+- `docs/long_term_roadmap.md`：长期开发路线
+- `docs/backlog.md`：后续开发 backlog
+- `docs/first_real_feishu_integration_sprint.md`：第一步真实只读接入实施方案
+
+## 安全说明
+
+- 不提交 `.env`。
+- 不在 README、docs、outputs 中记录真实 token、secret、cookie、App Secret、user open id 或真实企业数据。
+- `.env.example` 只保留占位符。
+- 公开仓库只保留 mock 数据、脱敏示例和接入说明。
+- 写操作必须在后续阶段通过 dry-run、人工确认和测试租户验证后再启用。

@@ -1,0 +1,7 @@
+[
+  {"item": "长会议压测报告", "owner": "周岚", "priority": "P0", "due_date": "2026-04-24", "status": "in_progress", "latest_progress": "60 分钟会议 P95 接近 11 秒", "blocker": "样本仍偏少", "source": "技术评审会", "related_doc": "data/docs/tech_structured_extraction.md", "related_meeting": "tech_review_minutes"},
+  {"item": "误召回样本集", "owner": "陈墨", "priority": "P0", "due_date": "2026-04-25", "status": "in_progress", "latest_progress": "已完成 80%", "blocker": "长会议场景不足", "source": "技术评审会", "related_doc": "data/docs/test_checklist_quality.md", "related_meeting": "tech_review_minutes"},
+  {"item": "技术风险同步推进表", "owner": "王越", "priority": "P1", "due_date": "2026-04-25", "status": "blocked", "latest_progress": "已同步部分风险", "blocker": "等待压测报告字段", "source": "技术评审会", "related_doc": "data/base/priority_board.csv", "related_meeting": "tech_review_minutes"},
+  {"item": "PRD MVP 范围冻结", "owner": "林舟", "priority": "P0", "due_date": "2026-04-20", "status": "done", "latest_progress": "已冻结", "blocker": "", "source": "产品评审会", "related_doc": "data/docs/prd_meeting_minutes_2.md", "related_meeting": "product_review_minutes"},
+  {"item": "灰度用户 FAQ 收集", "owner": "苏晴", "priority": "P1", "due_date": "2026-04-22", "status": "done", "latest_progress": "已收集初版", "blocker": "", "source": "产品评审会", "related_doc": "data/docs/faq_user_feedback.md", "related_meeting": "product_review_minutes"}
+]

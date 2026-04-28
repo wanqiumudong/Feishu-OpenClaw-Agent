@@ -1,0 +1,6 @@
+item,owner,priority,due_date,status,latest_progress,blocker,source,related_doc,related_meeting
+长会议压测报告,周岚,P0,2026-04-24,in_progress,60 分钟会议 P95 接近 11 秒,样本仍偏少,技术评审会,data/docs/tech_structured_extraction.md,tech_review_minutes
+误召回样本集,陈墨,P0,2026-04-25,in_progress,已完成 80%,长会议场景不足,技术评审会,data/docs/test_checklist_quality.md,tech_review_minutes
+技术风险同步推进表,王越,P1,2026-04-25,blocked,已同步部分风险,等待压测报告字段,技术评审会,data/base/priority_board.csv,tech_review_minutes
+PRD MVP 范围冻结,林舟,P0,2026-04-20,done,已冻结,,产品评审会,data/docs/prd_meeting_minutes_2.md,product_review_minutes
+灰度用户 FAQ 收集,苏晴,P1,2026-04-22,done,已收集初版,,产品评审会,data/docs/faq_user_feedback.md,product_review_minutes

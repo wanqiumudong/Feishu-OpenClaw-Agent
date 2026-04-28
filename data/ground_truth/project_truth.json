@@ -1,0 +1,100 @@
+{
+  "project": {
+    "id": "meeting_minutes_2",
+    "name": "智能会议纪要 2.0 升级项目",
+    "stage": "上线前 Go/No-Go 决策阶段",
+    "background": "团队正在把原有会议纪要能力升级为结构化纪要服务，目标是在会后 3 分钟内生成摘要、决策、风险和行动项，并支持任务联动。",
+    "goal": "完成 20% 灰度发布前的质量、性能、客服和回滚准备。"
+  },
+  "roles": [
+    {"name": "林舟", "role": "产品负责人", "focus": "PRD 范围、用户反馈、Go/No-Go 决策"},
+    {"name": "周岚", "role": "后端研发", "focus": "纪要结构化抽取服务、延迟优化、接口稳定性"},
+    {"name": "陈墨", "role": "测试负责人", "focus": "纪要质量评测、回归测试、边界场景"},
+    {"name": "苏晴", "role": "运营负责人", "focus": "客服 FAQ、灰度沟通、用户反馈收集"},
+    {"name": "王越", "role": "项目经理", "focus": "任务推进、风险同步、会议协调"}
+  ],
+  "decisions": [
+    {
+      "id": "decision_scope_v1",
+      "date": "2026-04-19",
+      "meeting": "产品评审会",
+      "content": "首版只上线结构化摘要、行动项抽取和风险提示，不上线自动周报推送。",
+      "source": "data/minutes/product_review_minutes.md"
+    },
+    {
+      "id": "decision_architecture_v1",
+      "date": "2026-04-21",
+      "meeting": "技术评审会",
+      "content": "抽取服务采用异步队列，会议结束后写入结构化结果表，前端只读取已确认字段。",
+      "source": "data/minutes/tech_review_minutes.md"
+    },
+    {
+      "id": "decision_gray_v1",
+      "date": "2026-04-26",
+      "meeting": "上线前 Go/No-Go 会议",
+      "content": "本周五进入 20% 灰度，失败率超过 3% 或 P95 延迟超过 12 秒时回滚。",
+      "source": "data/minutes/go_no_go_minutes.md"
+    }
+  ],
+  "risks": [
+    {
+      "id": "risk_latency",
+      "title": "转写后处理 P95 延迟偏高",
+      "owner": "周岚",
+      "status": "open",
+      "blocker": "压测样本不足，长会议场景 P95 仍接近 11 秒",
+      "source": "data/minutes/tech_review_minutes.md"
+    },
+    {
+      "id": "risk_quality",
+      "title": "行动项抽取误召回",
+      "owner": "陈墨",
+      "status": "open",
+      "blocker": "测试集中非任务型承诺句容易被误判为待办",
+      "source": "data/docs/test_checklist_quality.md"
+    },
+    {
+      "id": "risk_support",
+      "title": "客服 FAQ 尚未覆盖回滚说明",
+      "owner": "苏晴",
+      "status": "open",
+      "blocker": "灰度沟通口径仍待产品确认",
+      "source": "data/docs/faq_user_feedback.md"
+    }
+  ],
+  "timeline": [
+    {"date": "2026-04-18", "event": "PRD 冻结"},
+    {"date": "2026-04-19", "event": "产品评审"},
+    {"date": "2026-04-21", "event": "技术评审"},
+    {"date": "2026-04-26", "event": "上线前 Go/No-Go"},
+    {"date": "2026-04-29", "event": "灰度前检查"},
+    {"date": "2026-05-01", "event": "20% 灰度发布"},
+    {"date": "2026-05-06", "event": "上线回顾"}
+  ],
+  "meetings": [
+    {
+      "event_id": "product_review",
+      "minutes_id": "product_review_minutes",
+      "topic": "智能会议纪要 2.0 产品评审",
+      "purpose": "确认 MVP 范围、用户价值和不上线项。"
+    },
+    {
+      "event_id": "tech_review",
+      "minutes_id": "tech_review_minutes",
+      "topic": "纪要结构化抽取服务技术评审",
+      "purpose": "确认抽取服务架构、性能风险和接口边界。"
+    },
+    {
+      "event_id": "go_no_go_review",
+      "minutes_id": "go_no_go_minutes",
+      "topic": "智能会议纪要 2.0 上线前 Go/No-Go",
+      "purpose": "确认是否进入 20% 灰度，并明确回滚阈值和最后行动项。"
+    }
+  ],
+  "priority_questions": [
+    "上次技术评审会的主要风险是什么？",
+    "灰度上线流程是什么？",
+    "Go/No-Go 会后谁负责补客服 FAQ？",
+    "当前还有哪些阻塞没有关闭？"
+  ]
+}

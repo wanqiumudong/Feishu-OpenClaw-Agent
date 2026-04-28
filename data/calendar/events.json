@@ -1,0 +1,42 @@
+[
+  {
+    "event_id": "product_review",
+    "title": "智能会议纪要 2.0 产品评审",
+    "start": "2026-04-19T10:00:00+08:00",
+    "end": "2026-04-19T11:00:00+08:00",
+    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "purpose": "确认 MVP 范围、用户价值和暂不上线能力。",
+    "related_minutes": "product_review_minutes",
+    "related_docs": ["prd_meeting_minutes_2.md", "project_overview.md"]
+  },
+  {
+    "event_id": "tech_review",
+    "title": "纪要结构化抽取服务技术评审",
+    "start": "2026-04-21T14:00:00+08:00",
+    "end": "2026-04-21T15:30:00+08:00",
+    "attendees": ["周岚", "陈墨", "王越", "林舟"],
+    "purpose": "确认抽取服务架构、性能目标和主要风险。",
+    "related_minutes": "tech_review_minutes",
+    "related_docs": ["tech_structured_extraction.md", "test_checklist_quality.md"]
+  },
+  {
+    "event_id": "go_no_go_review",
+    "title": "智能会议纪要 2.0 上线前 Go/No-Go",
+    "start": "2026-04-27T16:00:00+08:00",
+    "end": "2026-04-27T17:00:00+08:00",
+    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "purpose": "确认是否进入 20% 灰度，并明确回滚阈值和最后行动项。",
+    "related_minutes": "go_no_go_minutes",
+    "related_docs": ["release_sop_gray_rollback.md", "faq_user_feedback.md", "test_checklist_quality.md"]
+  },
+  {
+    "event_id": "launch_review",
+    "title": "智能会议纪要 2.0 灰度上线回顾",
+    "start": "2026-05-06T15:00:00+08:00",
+    "end": "2026-05-06T16:00:00+08:00",
+    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "purpose": "回顾 20% 灰度数据、用户反馈和是否扩大灰度。",
+    "related_minutes": "",
+    "related_docs": ["project_overview.md", "faq_user_feedback.md"]
+  }
+]
