@@ -5,7 +5,6 @@ from pipelines.post_meeting_actions import build_post_meeting_actions
 from pipelines.pre_meeting_brief import build_pre_meeting_brief
 from pipelines.qa import answer_question
 from pipelines.reconcile_board import reconcile_board
-from providers.lark_cli_provider import LarkCliProvider
 from providers.mock_provider import MockProvider
 from utils.io import write_text
 
@@ -27,7 +26,7 @@ def main() -> None:
 
     args = parser.parse_args()
     settings = Settings.default()
-    provider = _build_provider(settings)
+    provider = MockProvider(settings)
 
     if args.command == "qa":
         result = answer_question(provider, args.question)
@@ -54,11 +53,3 @@ def main() -> None:
 
 def _short_id(value: str) -> str:
     return value.replace("_review", "")
-
-
-def _build_provider(settings: Settings):
-    if settings.provider == "mock":
-        return MockProvider(settings)
-    if settings.provider == "lark_cli":
-        return LarkCliProvider(settings, fallback=MockProvider(settings))
-    raise ValueError(f"Unsupported MEETINGFLOW_PROVIDER: {settings.provider}")

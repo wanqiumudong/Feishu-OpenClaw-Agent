@@ -16,7 +16,6 @@ MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能�
 当前版本是 **mock-driven bootstrap MVP**。
 
 - 默认使用本地 mock 数据，开箱即可运行。
-- 已保留官方 `lark-cli` 只读 provider 边界，方便后续替换真实飞书数据源。
 - 真实会议纪要读取、事件触发、消息卡片、任务写入、Base 写入和 OpenClaw channel 仍未完成。
 
 ## Repository Layout
@@ -24,9 +23,8 @@ MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能�
 ```text
 data/                 # mock 办公数据，支撑本地 demo
 src/                  # Agent 框架、provider、retriever、pipeline 和 renderer
-tests/                # smoke tests 和 provider tests
+tests/                # smoke tests
 pyproject.toml        # Python package 配置
-.env.example          # 本地配置占位示例，不包含真实密钥
 ```
 
 运行 demo 后会在本地生成 `outputs/`，该目录不作为展示内容提交。
@@ -46,37 +44,13 @@ python -m pip install -e .
 运行四条 mock demo：
 
 ```bash
-MEETINGFLOW_PROVIDER=mock meetingflow qa --question "上次技术评审会的主要风险是什么？"
-MEETINGFLOW_PROVIDER=mock meetingflow pre-meeting --event go_no_go_review
-MEETINGFLOW_PROVIDER=mock meetingflow post-meeting --minutes go_no_go_minutes
-MEETINGFLOW_PROVIDER=mock meetingflow reconcile
+meetingflow qa --question "上次技术评审会的主要风险是什么？"
+meetingflow pre-meeting --event go_no_go_review
+meetingflow post-meeting --minutes go_no_go_minutes
+meetingflow reconcile
 ```
 
 每条命令都会在终端打印 Markdown，并在本地写入 `outputs/`。
-
-## Optional Feishu Read-Only Mode
-
-仓库中保留了 `LarkCliProvider` 的只读接入边界，用于后续通过官方 `lark-cli` 读取测试飞书文档或会议纪要。
-
-这个模式当前只用于开发验证：
-
-- 不发送消息。
-- 不创建任务。
-- 不写入 Base。
-
-使用时需要在本地复制配置：
-
-```bash
-cp .env.example .env
-```
-
-然后只填入测试环境占位变量，并在 shell 中导入：
-
-```bash
-set -a
-source .env
-set +a
-```
 
 ## Tests
 
@@ -91,8 +65,6 @@ python -m unittest discover -s tests
 - 会前背景包
 - 会后行动项
 - 推进总表对账
-- `LarkCliProvider` 环境变量读取
-- `lark-cli` 文档读取 payload 归一化
 
 ## Boundary
 
