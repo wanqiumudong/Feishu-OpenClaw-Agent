@@ -1,6 +1,6 @@
 # MeetingFlow Agent
 
-MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能助手原型，聚焦 **会议 + 项目推进**。
+MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能助手原型，聚焦 会议与项目推进场景。
 
 它把本地模拟的飞书协作数据整理成四条可运行的 Agent 工作流：
 
@@ -9,12 +9,7 @@ MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能�
 - 会后行动项：从会议纪要中抽取决策、负责人、截止时间和任务创建预览。
 - 推进总表对账：根据任务、会议和群聊线索生成项目状态更新预览。
 
-当前仓库只保留运行 Agent 框架所需的最小内容：源码、mock 数据、测试和使用说明。
-
-## 当前状态
-
-当前版本是 **mock-driven bootstrap MVP**。
-
+## Done
 - 默认使用本地 mock 数据，开箱即可运行。
 - 已保留官方 `lark-cli` 只读 provider 边界，方便后续替换真实飞书数据源。
 - 真实会议纪要读取、事件触发、消息卡片、任务写入、Base 写入和 OpenClaw channel 仍未完成。
@@ -54,30 +49,6 @@ MEETINGFLOW_PROVIDER=mock python -m feishu_workbench reconcile
 
 每条命令都会在终端打印 Markdown，并在本地写入 `outputs/`。
 
-## Optional Feishu Read-Only Mode
-
-仓库中保留了 `LarkCliProvider` 的只读接入边界，用于后续通过官方 `lark-cli` 读取测试飞书文档或会议纪要。
-
-这个模式当前只用于开发验证：
-
-- 不发送消息。
-- 不创建任务。
-- 不写入 Base。
-
-使用时需要在本地复制配置：
-
-```bash
-cp .env.example .env
-```
-
-然后只填入测试环境占位变量，并在 shell 中导入：
-
-```bash
-set -a
-source .env
-set +a
-```
-
 ## Tests
 
 ```bash
@@ -94,12 +65,7 @@ python -m unittest discover -s tests
 - `LarkCliProvider` 环境变量读取
 - `lark-cli` 文档读取 payload 归一化
 
-## Boundary
-
-当前仓库展示的是 Agent 框架和本地可运行 demo，不代表已经完成完整真实飞书组织接入。
-
-尚未完成的能力包括：
-
+## TODO
 - 真实会议纪要端到端读取
 - 事件订阅和自动触发
 - 飞书机器人消息或卡片投递
