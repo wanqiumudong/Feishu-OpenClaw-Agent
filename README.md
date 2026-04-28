@@ -6,10 +6,9 @@ MeetingFlow Agent 聚焦 **会议 + 项目推进** 场景，围绕“智能会�
 
 当前版本是 **mock-driven bootstrap MVP + 真实飞书文档只读验证**：
 
-- 默认使用本地 mock 办公数据，不依赖真实飞书账号、真实 token 或真实 API 权限。
+- 默认使用本地 mock 办公数据，开箱即可运行。
 - 已接入官方 `larksuite/cli` 的只读 provider 边界，并验证过测试飞书文档读取与归一化。
 - 会议纪要真实读取、事件触发、消息卡片、任务写入、Base 写入和 OpenClaw channel 仍未完成。
-- 仓库不包含任何真实 token、secret、cookie、App Secret 或真实企业数据。
 
 ## 工作内容
 
@@ -218,35 +217,13 @@ python -m unittest discover -s tests
 - 推进总表对账
 - `LarkCliProvider` 环境变量读取
 - `lark-cli docs +fetch v2` payload 归一化
-- token 不进入 `source_path`
 
-## 文档索引
+## 项目资料
 
-基础文档：
+可进一步阅读：
 
 - `docs/scene_definition.md`：场景定义
 - `docs/data_generation_strategy.md`：数据生成策略
 - `docs/mvp_scope.md`：当前 MVP 范围
 - `docs/architecture.md`：技术架构
 - `docs/demo_walkthrough.md`：Demo 演示路径
-- `docs/public_release_audit.md`：公开发布检查清单
-
-长期计划与接入文档：
-
-- `docs/current_state_audit.md`：当前工程审查
-- `docs/lark_cli_setup_check.md`：官方 lark-cli 本机安装与命令核对
-- `docs/feishu_integration_plan.md`：真实飞书接入路线
-- `docs/agent_orchestration_plan.md`：Agent 场景工作流编排
-- `docs/permission_and_security_plan.md`：权限、配置和安全边界
-- `docs/evaluation_plan.md`：评测与效果验证计划
-- `docs/long_term_roadmap.md`：长期开发路线
-- `docs/backlog.md`：后续开发 backlog
-- `docs/first_real_feishu_integration_sprint.md`：第一步真实只读接入实施方案
-
-## 安全说明
-
-- 不提交 `.env`。
-- 不在 README、docs、outputs 中记录真实 token、secret、cookie、App Secret、user open id 或真实企业数据。
-- `.env.example` 只保留占位符。
-- 公开仓库只保留 mock 数据、脱敏示例和接入说明。
-- 写操作必须在后续阶段通过 dry-run、人工确认和测试租户验证后再启用。
