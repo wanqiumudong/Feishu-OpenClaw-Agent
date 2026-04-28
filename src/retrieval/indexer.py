@@ -1,4 +1,4 @@
-from feishu_workbench.models import DataBundle, KnowledgeItem
+from models import DataBundle, KnowledgeItem
 
 
 def build_index(bundle: DataBundle) -> list[KnowledgeItem]:

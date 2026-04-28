@@ -3,11 +3,19 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "feishu-workbench"
+name = "meetingflow-agent"
 version = "0.1.0"
 description = "Mock-driven MeetingFlow Agent bootstrap for Feishu AI Challenge"
 requires-python = ">=3.10"
 dependencies = []
 
+[project.scripts]
+meetingflow = "main:main"
+
+[tool.setuptools]
+py-modules = ["config", "main", "models"]
+
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["distribution*", "pipelines*", "providers*", "retrieval*", "utils*"]
+namespaces = true

@@ -23,7 +23,7 @@ MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能�
 
 ```text
 data/                 # mock 办公数据，支撑本地 demo
-src/feishu_workbench/ # Agent 框架、provider、retriever、pipeline 和 renderer
+src/                  # Agent 框架、provider、retriever、pipeline 和 renderer
 tests/                # smoke tests 和 provider tests
 pyproject.toml        # Python package 配置
 .env.example          # 本地配置占位示例，不包含真实密钥
@@ -46,10 +46,10 @@ python -m pip install -e .
 运行四条 mock demo：
 
 ```bash
-MEETINGFLOW_PROVIDER=mock python -m feishu_workbench qa --question "上次技术评审会的主要风险是什么？"
-MEETINGFLOW_PROVIDER=mock python -m feishu_workbench pre-meeting --event go_no_go_review
-MEETINGFLOW_PROVIDER=mock python -m feishu_workbench post-meeting --minutes go_no_go_minutes
-MEETINGFLOW_PROVIDER=mock python -m feishu_workbench reconcile
+MEETINGFLOW_PROVIDER=mock meetingflow qa --question "上次技术评审会的主要风险是什么？"
+MEETINGFLOW_PROVIDER=mock meetingflow pre-meeting --event go_no_go_review
+MEETINGFLOW_PROVIDER=mock meetingflow post-meeting --minutes go_no_go_minutes
+MEETINGFLOW_PROVIDER=mock meetingflow reconcile
 ```
 
 每条命令都会在终端打印 Markdown，并在本地写入 `outputs/`。

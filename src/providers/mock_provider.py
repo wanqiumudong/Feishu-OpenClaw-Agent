@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Any
 
-from feishu_workbench.config import Settings
-from feishu_workbench.models import DataBundle, KnowledgeItem
-from feishu_workbench.utils.io import read_csv, read_json, read_jsonl, read_text
+from config import Settings
+from models import DataBundle, KnowledgeItem
+from utils.io import read_csv, read_json, read_jsonl, read_text
 
 
 class MockProvider:

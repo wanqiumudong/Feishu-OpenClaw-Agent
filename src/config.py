@@ -16,7 +16,7 @@ class Settings:
 
     @classmethod
     def default(cls) -> "Settings":
-        root = Path(__file__).resolve().parents[2]
+        root = Path(__file__).resolve().parents[1]
         return cls(
             project_root=root,
             data_dir=root / "data",

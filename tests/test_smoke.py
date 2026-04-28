@@ -1,11 +1,11 @@
 import unittest
 
-from feishu_workbench.config import Settings
-from feishu_workbench.providers.mock_provider import MockProvider
-from feishu_workbench.pipelines.post_meeting_actions import build_post_meeting_actions
-from feishu_workbench.pipelines.pre_meeting_brief import build_pre_meeting_brief
-from feishu_workbench.pipelines.qa import answer_question
-from feishu_workbench.pipelines.reconcile_board import reconcile_board
+from config import Settings
+from providers.mock_provider import MockProvider
+from pipelines.post_meeting_actions import build_post_meeting_actions
+from pipelines.pre_meeting_brief import build_pre_meeting_brief
+from pipelines.qa import answer_question
+from pipelines.reconcile_board import reconcile_board
 
 
 class BootstrapSmokeTest(unittest.TestCase):

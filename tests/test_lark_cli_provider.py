@@ -2,9 +2,9 @@ import os
 import unittest
 from unittest.mock import patch
 
-from feishu_workbench.config import Settings
-from feishu_workbench.providers.lark_cli_provider import LarkCliProvider
-from feishu_workbench.providers.mock_provider import MockProvider
+from config import Settings
+from providers.lark_cli_provider import LarkCliProvider
+from providers.mock_provider import MockProvider
 
 
 class LarkCliProviderTest(unittest.TestCase):

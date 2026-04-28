@@ -5,9 +5,9 @@ from collections.abc import Callable
 from html.parser import HTMLParser
 from typing import Any
 
-from feishu_workbench.config import Settings
-from feishu_workbench.models import DataBundle, KnowledgeItem
-from feishu_workbench.providers.mock_provider import MockProvider
+from config import Settings
+from models import DataBundle, KnowledgeItem
+from providers.mock_provider import MockProvider
 
 
 class LarkCliProvider:

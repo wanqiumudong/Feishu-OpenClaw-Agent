@@ -1,7 +1,7 @@
-from feishu_workbench.distribution.renderer import render_qa_answer, sources_from_items
-from feishu_workbench.providers.mock_provider import MockProvider
-from feishu_workbench.retrieval.indexer import build_index
-from feishu_workbench.retrieval.retriever import retrieve
+from distribution.renderer import render_qa_answer, sources_from_items
+from providers.mock_provider import MockProvider
+from retrieval.indexer import build_index
+from retrieval.retriever import retrieve
 
 
 def answer_question(provider: MockProvider, question: str):
