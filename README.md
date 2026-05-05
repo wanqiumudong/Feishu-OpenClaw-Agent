@@ -1,6 +1,6 @@
 # MeetingFlow Agent
 
-MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能助手原型，聚焦 会议与项目推进场景。
+MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能助手原型，聚焦会议与项目推进场景。
 
 它把本地模拟的飞书协作数据整理成四条可运行的 Agent 工作流：
 
@@ -9,9 +9,35 @@ MeetingFlow Agent 是一个面向飞书 AI 校园挑战赛的办公场景智能�
 - 会后行动项：从会议纪要中抽取决策、负责人、截止时间和任务创建预览。
 - 推进总表对账：根据任务、会议和群聊线索生成项目状态更新预览。
 
+项目目标不是做一个泛化聊天机器人，而是把“会前准备、会后执行、项目推进对齐”这条办公链路做成可复现的场景工作流。
+
 ## Done
 - 默认使用本地 mock 数据，开箱即可运行。
 - 真实会议纪要读取、事件触发、消息卡片、任务写入、Base 写入和 OpenClaw channel 仍未完成。
+
+## Engineering Highlights
+
+- 多源办公对象建模：用 docs、minutes、chat、tasks、calendar 和 base-style board 模拟真实协作现场。
+- 统一中间表示：将不同来源归一到 `KnowledgeItem`、`DataBundle`、`SourceRef` 等结构，便于检索、抽取和渲染复用。
+- 场景化 pipeline：`qa`、`pre-meeting`、`post-meeting`、`reconcile` 分别对应办公流程中的查询、会前、会后和推进对账环节。
+- 来源可追溯：所有输出都保留来源，避免只给结论、不知道依据来自哪里。
+- CLI-first demo：通过 `meetingflow` 命令稳定复现，适合现场演示、录屏和测试。
+
+## Innovation Points
+
+- 从“知识库问答”推进到“会议与项目推进工作流 Agent”，覆盖会议前后和项目对账。
+- 将会议纪要、任务、群聊和推进表交叉使用，支持发现漏记事项、状态变化和阻塞信息。
+- 输出采用“预览/建议”方式，而不是直接写入系统，更符合办公场景中的人工确认流程。
+- 用 mock-driven 方式先固定流程闭环和工程边界，保证 demo 稳定，也避免公开仓暴露真实组织数据。
+
+## Demo Path
+
+建议按以下顺序展示：
+
+1. `qa`：先展示带来源问答，说明 Agent 能从多源材料中找依据。
+2. `pre-meeting`：展示会前背景包，说明如何减少会前翻资料时间。
+3. `post-meeting`：展示会后行动项，说明如何从纪要转成任务预览。
+4. `reconcile`：展示推进表对账，说明如何发现漏项、状态变化和阻塞。
 
 ## Repository Layout
 
