@@ -1,0 +1,44 @@
+[
+  {
+    "id": "QA-001",
+    "question": "上次技术评审会的主要风险是什么？",
+    "expected_keywords": ["长会议", "误判", "知识链接"],
+    "expected_sources": ["tech_review_minutes", "test_checklist_quality"],
+    "notes": "检查技术风险回答是否覆盖主要风险"
+  },
+  {
+    "id": "QA-002",
+    "question": "灰度上线前要确认哪些事情？",
+    "expected_keywords": ["回归测试", "客服 FAQ", "监控", "Go/No-Go"],
+    "expected_sources": ["release_sop_gray_rollback", "go_no_go_minutes"],
+    "notes": "检查灰度上线准备项"
+  },
+  {
+    "id": "QA-003",
+    "question": "现在还有哪些未关闭阻塞？",
+    "expected_keywords": ["owner", "阻塞"],
+    "expected_sources": ["project_truth"],
+    "notes": "检查未关闭风险聚合"
+  },
+  {
+    "id": "QA-004",
+    "question": "客服 FAQ 和回滚说明谁负责补齐？",
+    "expected_keywords": ["客服", "FAQ", "回滚"],
+    "expected_sources": ["go_no_go_minutes", "faq_user_feedback"],
+    "notes": "检查负责人和背景来源"
+  },
+  {
+    "id": "QA-005",
+    "question": "推进表里有哪些阻塞需要关注？",
+    "expected_keywords": ["阻塞", "长会议", "误召回"],
+    "expected_sources": ["priority_board"],
+    "notes": "检查推进表检索"
+  },
+  {
+    "id": "QA-006",
+    "question": "回滚阈值是什么？",
+    "expected_keywords": ["3%", "P95", "12 秒"],
+    "expected_sources": ["release_sop_gray_rollback"],
+    "notes": "检查 SOP 信息"
+  }
+]

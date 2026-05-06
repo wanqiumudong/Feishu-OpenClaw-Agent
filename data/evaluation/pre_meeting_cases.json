@@ -1,0 +1,23 @@
+[
+  {
+    "id": "PRE-001",
+    "event_id": "go_no_go_review",
+    "expected_keywords": ["会前背景包", "会议目的", "未关闭风险", "待确认问题"],
+    "min_sources": 3,
+    "notes": "检查 Go/No-Go 会前包结构"
+  },
+  {
+    "id": "PRE-002",
+    "event_id": "tech_review",
+    "expected_keywords": ["技术", "风险", "待确认问题"],
+    "min_sources": 2,
+    "notes": "检查技术评审会前包"
+  },
+  {
+    "id": "PRE-003",
+    "event_id": "product_review",
+    "expected_keywords": ["产品", "关键决策", "必读资料"],
+    "min_sources": 2,
+    "notes": "检查产品评审会前包"
+  }
+]

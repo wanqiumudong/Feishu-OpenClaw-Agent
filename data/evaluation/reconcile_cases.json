@@ -1,0 +1,16 @@
+[
+  {
+    "id": "REC-001",
+    "expected_new_item_keywords": ["监控面板", "回归测试", "客服"],
+    "expected_blocker_keywords": ["阻塞", "延期", "漏了"],
+    "min_sources": 3,
+    "notes": "检查新增事项和阻塞补全"
+  },
+  {
+    "id": "REC-002",
+    "expected_new_item_keywords": ["灰度", "测试"],
+    "expected_blocker_keywords": ["长会议", "回滚"],
+    "min_sources": 3,
+    "notes": "检查任务和群聊对账"
+  }
+]

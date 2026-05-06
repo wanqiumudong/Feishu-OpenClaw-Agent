@@ -1,0 +1,29 @@
+[
+  {
+    "id": "POST-001",
+    "minutes_id": "go_no_go_minutes",
+    "min_actions": 3,
+    "expected_owners": ["周岚", "陈墨", "苏晴"],
+    "expected_due_dates": ["2026-04-29", "2026-04-30"],
+    "expected_background_keywords": ["release_sop_gray_rollback", "test_checklist_quality", "faq_user_feedback"],
+    "notes": "检查 Go/No-Go 行动项"
+  },
+  {
+    "id": "POST-002",
+    "minutes_id": "tech_review_minutes",
+    "min_actions": 2,
+    "expected_owners": ["周岚", "陈墨"],
+    "expected_due_dates": ["2026-04-24", "2026-04-25"],
+    "expected_background_keywords": ["tech_structured_extraction", "test_checklist_quality"],
+    "notes": "检查技术评审行动项"
+  },
+  {
+    "id": "POST-003",
+    "minutes_id": "product_review_minutes",
+    "min_actions": 2,
+    "expected_owners": ["林舟", "苏晴"],
+    "expected_due_dates": ["2026-04-20", "2026-04-22"],
+    "expected_background_keywords": ["project_overview", "faq_user_feedback"],
+    "notes": "检查产品评审行动项"
+  }
+]

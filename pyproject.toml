@@ -11,11 +11,12 @@ dependencies = []
 
 [project.scripts]
 meetingflow = "main:main"
+meetingflow-eval = "evaluation.run_eval:main"
 
 [tool.setuptools]
 py-modules = ["config", "main", "models"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["distribution*", "pipelines*", "providers*", "retrieval*", "utils*"]
+include = ["distribution*", "evaluation*", "pipelines*", "providers*", "retrieval*", "utils*"]
 namespaces = true
