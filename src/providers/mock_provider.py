@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Any
 
-from feishu_workbench.config import Settings
-from feishu_workbench.models import DataBundle, KnowledgeItem
-from feishu_workbench.utils.io import read_csv, read_json, read_jsonl, read_text
+from config import Settings
+from models import DataBundle, KnowledgeItem
+from utils.io import read_csv, read_json, read_jsonl, read_text
 
 
 class MockProvider:
@@ -47,11 +47,17 @@ class MockProvider:
                     title=title,
                     kind=kind,
                     content=content,
-                    source_path=str(path.relative_to(self.settings.project_root)),
+                    source_path=self._source_path(path),
                     tags=self._infer_tags(path.name, content),
                 )
             )
         return items
+
+    def _source_path(self, path: Path) -> str:
+        try:
+            return str(path.relative_to(self.settings.project_root))
+        except ValueError:
+            return str(path.relative_to(self.settings.data_dir.parent))
 
     @staticmethod
     def _extract_title(content: str, fallback: str) -> str:

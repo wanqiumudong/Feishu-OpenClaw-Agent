@@ -1,6 +1,6 @@
-from feishu_workbench.distribution.renderer import render_reconcile_summary
-from feishu_workbench.models import ReconcileResult, SourceRef
-from feishu_workbench.providers.mock_provider import MockProvider
+from distribution.renderer import render_reconcile_summary
+from models import ReconcileResult, SourceRef
+from providers.mock_provider import MockProvider
 
 
 def reconcile_board(provider: MockProvider) -> ReconcileResult:

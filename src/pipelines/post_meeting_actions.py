@@ -1,8 +1,8 @@
 import re
 
-from feishu_workbench.distribution.renderer import render_post_meeting_actions
-from feishu_workbench.models import ActionPreview, PostMeetingResult, SourceRef
-from feishu_workbench.providers.mock_provider import MockProvider
+from distribution.renderer import render_post_meeting_actions
+from models import ActionPreview, PostMeetingResult, SourceRef
+from providers.mock_provider import MockProvider
 
 
 def build_post_meeting_actions(provider: MockProvider, minutes_id: str) -> PostMeetingResult:

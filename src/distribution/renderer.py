@@ -1,4 +1,4 @@
-from feishu_workbench.models import ActionPreview, MarkdownResult, ReconcileResult, SourceRef
+from models import ActionPreview, MarkdownResult, ReconcileResult, SourceRef
 
 
 def sources_from_items(items) -> list[SourceRef]:

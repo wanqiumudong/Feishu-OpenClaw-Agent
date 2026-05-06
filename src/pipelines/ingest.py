@@ -1,5 +1,5 @@
-from feishu_workbench.providers.mock_provider import MockProvider
-from feishu_workbench.retrieval.indexer import build_index
+from providers.mock_provider import MockProvider
+from retrieval.indexer import build_index
 
 
 def ingest_mock_knowledge(provider: MockProvider):

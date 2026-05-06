@@ -1,17 +1,16 @@
 import argparse
 
-from feishu_workbench.config import Settings
-from feishu_workbench.pipelines.post_meeting_actions import build_post_meeting_actions
-from feishu_workbench.pipelines.pre_meeting_brief import build_pre_meeting_brief
-from feishu_workbench.pipelines.qa import answer_question
-from feishu_workbench.pipelines.reconcile_board import reconcile_board
-from feishu_workbench.providers.lark_cli_provider import LarkCliProvider
-from feishu_workbench.providers.mock_provider import MockProvider
-from feishu_workbench.utils.io import write_text
+from config import Settings
+from pipelines.post_meeting_actions import build_post_meeting_actions
+from pipelines.pre_meeting_brief import build_pre_meeting_brief
+from pipelines.qa import answer_question
+from pipelines.reconcile_board import reconcile_board
+from providers.mock_provider import MockProvider
+from utils.io import write_text
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="feishu_workbench")
+    parser = argparse.ArgumentParser(prog="meetingflow")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     qa_parser = subparsers.add_parser("qa", help="Answer a question with mock sources")
@@ -27,7 +26,7 @@ def main() -> None:
 
     args = parser.parse_args()
     settings = Settings.default()
-    provider = _build_provider(settings)
+    provider = MockProvider(settings)
 
     if args.command == "qa":
         result = answer_question(provider, args.question)
@@ -54,11 +53,3 @@ def main() -> None:
 
 def _short_id(value: str) -> str:
     return value.replace("_review", "")
-
-
-def _build_provider(settings: Settings):
-    if settings.provider == "mock":
-        return MockProvider(settings)
-    if settings.provider == "lark_cli":
-        return LarkCliProvider(settings, fallback=MockProvider(settings))
-    raise ValueError(f"Unsupported MEETINGFLOW_PROVIDER: {settings.provider}")

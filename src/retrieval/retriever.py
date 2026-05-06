@@ -1,6 +1,6 @@
 import re
 
-from feishu_workbench.models import KnowledgeItem
+from models import KnowledgeItem
 
 
 KEY_TERMS = [
