@@ -128,9 +128,9 @@ https://<public-domain>/feishu/events
 配置完成后，用户可以在飞书测试群中直接触发 Agent。
 本地命令行主要用于开发、调试、评测和录屏。
 
-## 真实飞书只读验证
+## 真实飞书验证
 
-项目支持通过官方 `lark-cli` 读取测试飞书对象。当前建议先做只读验证，只使用测试文档和测试纪要，不写真实业务对象。
+项目支持通过官方 `lark-cli` 读取飞书测试对象，当前已完成测试文档读取验证。
 
 示例：
 
@@ -140,7 +140,7 @@ FEISHU_DOC_URLS="<test-doc-url>" \
 meetingflow real-smoke
 ```
 
-如果需要测试发送能力，默认仍是 dry-run。只有显式打开 `MEETINGFLOW_REAL_WRITE=1` 时，才会写入测试群或其他测试对象。
+消息发送和其他写操作默认关闭。只有显式打开 `MEETINGFLOW_REAL_WRITE=1` 时，才会写入测试群或其他测试对象。
 
 ## 测试
 
