@@ -7,11 +7,51 @@
     "goal": "完成 20% 灰度发布前的质量、性能、客服和回滚准备。"
   },
   "roles": [
-    {"name": "林舟", "role": "产品负责人", "focus": "PRD 范围、用户反馈、Go/No-Go 决策"},
-    {"name": "周岚", "role": "后端研发", "focus": "纪要结构化抽取服务、延迟优化、接口稳定性"},
-    {"name": "陈墨", "role": "测试负责人", "focus": "纪要质量评测、回归测试、边界场景"},
-    {"name": "苏晴", "role": "运营负责人", "focus": "客服 FAQ、灰度沟通、用户反馈收集"},
-    {"name": "王越", "role": "项目经理", "focus": "任务推进、风险同步、会议协调"}
+    {
+      "name": "林舟",
+      "role": "产品负责人",
+      "focus": "PRD 范围、用户反馈、Go/No-Go 决策"
+    },
+    {
+      "name": "周岚",
+      "role": "后端研发",
+      "focus": "纪要结构化抽取服务、延迟优化、接口稳定性"
+    },
+    {
+      "name": "陈墨",
+      "role": "测试负责人",
+      "focus": "纪要质量评测、回归测试、边界场景"
+    },
+    {
+      "name": "苏晴",
+      "role": "运营负责人",
+      "focus": "客服 FAQ、灰度沟通、用户反馈收集"
+    },
+    {
+      "name": "王越",
+      "role": "项目经理",
+      "focus": "任务推进、风险同步、会议协调"
+    },
+    {
+      "name": "何澈",
+      "role": "安全负责人",
+      "focus": "权限边界、日志脱敏、上线阻断项"
+    },
+    {
+      "name": "赵一诺",
+      "role": "平台工程师",
+      "focus": "任务同步契约、幂等、监控与灰度开关"
+    },
+    {
+      "name": "蒋予",
+      "role": "前端负责人",
+      "focus": "预览态交互、移动端卡片、证据片段展示"
+    },
+    {
+      "name": "韩知远",
+      "role": "客户成功",
+      "focus": "灰度客户访谈、反馈分层、FAQ 命中率"
+    }
   ],
   "decisions": [
     {
@@ -34,6 +74,62 @@
       "meeting": "上线前 Go/No-Go 会议",
       "content": "本周五进入 20% 灰度，失败率超过 3% 或 P95 延迟超过 12 秒时回滚。",
       "source": "data/minutes/go_no_go_minutes.md"
+    },
+    {
+      "id": "decision_preview_only",
+      "date": "2026-04-18",
+      "meeting": "需求澄清与范围对齐会",
+      "content": "行动项同步只生成预览建议，负责人确认前不创建正式任务。",
+      "source": "data/minutes/requirement_alignment_minutes.md"
+    },
+    {
+      "id": "decision_no_weekly_report",
+      "date": "2026-04-19",
+      "meeting": "产品评审会",
+      "content": "自动生成团队周报不进入本次 MVP，避免跨会议聚合和权限扩散。",
+      "source": "data/minutes/product_review_minutes.md"
+    },
+    {
+      "id": "decision_reconcile_readonly",
+      "date": "2026-04-22",
+      "meeting": "架构深评会",
+      "content": "Reconciler 只输出冲突建议，不直接覆盖 priority board 或任务系统。",
+      "source": "data/minutes/architecture_review_minutes.md"
+    },
+    {
+      "id": "decision_p95_gate_9s",
+      "date": "2026-04-22",
+      "meeting": "架构深评会",
+      "content": "60 分钟会议 P95 gate 收紧到 9 秒，作为扩大灰度前置条件。",
+      "source": "data/minutes/architecture_review_minutes.md"
+    },
+    {
+      "id": "decision_security_blocker",
+      "date": "2026-04-23",
+      "meeting": "安全评审会",
+      "content": "权限越权告警是 P0 阻断项，出现一次即停止放量。",
+      "source": "data/minutes/security_review_minutes.md"
+    },
+    {
+      "id": "decision_eval_split_metrics",
+      "date": "2026-04-24",
+      "meeting": "评测口径校准会",
+      "content": "行动项 precision、recall、字段完整率和 source coverage 分开统计。",
+      "source": "data/minutes/evaluation_calibration_minutes.md"
+    },
+    {
+      "id": "decision_customer_copy_p0",
+      "date": "2026-04-25",
+      "meeting": "客户反馈复盘会",
+      "content": "“待确认创建”文案进入 P0 修复，避免用户误解任务已创建。",
+      "source": "data/minutes/customer_feedback_review_minutes.md"
+    },
+    {
+      "id": "decision_hold_50_percent",
+      "date": "2026-05-06",
+      "meeting": "灰度上线复盘会",
+      "content": "20% 灰度继续运行，暂不在 2026-05-06 扩大到 50%。",
+      "source": "data/minutes/launch_retro_minutes.md"
     }
   ],
   "risks": [
@@ -60,16 +156,137 @@
       "status": "open",
       "blocker": "灰度沟通口径仍待产品确认",
       "source": "data/docs/faq_user_feedback.md"
+    },
+    {
+      "id": "risk_permission_leak",
+      "title": "会前背景包可能暴露越权文档",
+      "owner": "何澈",
+      "status": "mitigated",
+      "blocker": "需要按参会人和文档边界过滤，安全评审已列为 P0 gate",
+      "source": "data/minutes/security_review_minutes.md"
+    },
+    {
+      "id": "risk_preview_misread",
+      "title": "用户误以为预览任务已正式创建",
+      "owner": "苏晴",
+      "status": "in_progress",
+      "blocker": "FAQ 与移动端文案还未完全同步",
+      "source": "data/docs/customer_feedback_round1.md"
+    },
+    {
+      "id": "risk_long_meeting_duplicate",
+      "title": "长会议分段导致重复行动项",
+      "owner": "陈墨",
+      "status": "open",
+      "blocker": "重复样本已加入回归集，但二轮压测未完成",
+      "source": "data/minutes/architecture_review_minutes.md"
+    },
+    {
+      "id": "risk_board_conflict",
+      "title": "priority board 与任务表存在状态冲突",
+      "owner": "王越",
+      "status": "open",
+      "blocker": "看板中仍有 blocked 无 blocker 和 done 带阻塞项",
+      "source": "data/base/priority_board.csv"
+    },
+    {
+      "id": "risk_external_customer_title",
+      "title": "外部客户发言被误生成内部任务标题",
+      "owner": "林舟",
+      "status": "in_progress",
+      "blocker": "客户反馈样本未全部加入评测集",
+      "source": "data/minutes/customer_feedback_review_minutes.md"
+    },
+    {
+      "id": "risk_source_gap",
+      "title": "部分聊天状态缺少文档或会议证据",
+      "owner": "王越",
+      "status": "open",
+      "blocker": "需要在 reconcile 输出中标记 evidence_missing",
+      "source": "data/docs/permission_model_data_boundary.md"
+    },
+    {
+      "id": "risk_mobile_title",
+      "title": "移动端任务卡片标题过长",
+      "owner": "蒋予",
+      "status": "in_progress",
+      "blocker": "前端截断已做，但正式任务标题限制还需接口侧配合",
+      "source": "data/docs/customer_feedback_round1.md"
     }
   ],
   "timeline": [
-    {"date": "2026-04-18", "event": "PRD 冻结"},
-    {"date": "2026-04-19", "event": "产品评审"},
-    {"date": "2026-04-21", "event": "技术评审"},
-    {"date": "2026-04-26", "event": "上线前 Go/No-Go"},
-    {"date": "2026-04-29", "event": "灰度前检查"},
-    {"date": "2026-05-01", "event": "20% 灰度发布"},
-    {"date": "2026-05-06", "event": "上线回顾"}
+    {
+      "date": "2026-04-18",
+      "event": "PRD 冻结"
+    },
+    {
+      "date": "2026-04-19",
+      "event": "产品评审"
+    },
+    {
+      "date": "2026-04-21",
+      "event": "技术评审"
+    },
+    {
+      "date": "2026-04-26",
+      "event": "上线前 Go/No-Go"
+    },
+    {
+      "date": "2026-04-29",
+      "event": "灰度前检查"
+    },
+    {
+      "date": "2026-05-01",
+      "event": "20% 灰度发布"
+    },
+    {
+      "date": "2026-05-06",
+      "event": "上线回顾"
+    },
+    {
+      "date": "2026-04-18",
+      "event": "需求范围对齐"
+    },
+    {
+      "date": "2026-04-20",
+      "event": "权限模型初稿完成"
+    },
+    {
+      "date": "2026-04-22",
+      "event": "架构深评完成"
+    },
+    {
+      "date": "2026-04-23",
+      "event": "安全评审完成"
+    },
+    {
+      "date": "2026-04-24",
+      "event": "评测口径冻结"
+    },
+    {
+      "date": "2026-04-25",
+      "event": "客户反馈复盘"
+    },
+    {
+      "date": "2026-04-28",
+      "event": "上线准备检查"
+    },
+    {
+      "date": "2026-05-01",
+      "event": "20% 灰度开启"
+    },
+    {
+      "date": "2026-05-03",
+      "event": "灰度第三天指标复核"
+    },
+    {
+      "date": "2026-05-06",
+      "event": "上线复盘并暂缓 50% 灰度"
+    },
+    {
+      "date": "2026-05-08",
+      "event": "50% 灰度决策会"
+    }
   ],
   "meetings": [
     {
@@ -89,12 +306,56 @@
       "minutes_id": "go_no_go_minutes",
       "topic": "智能会议纪要 2.0 上线前 Go/No-Go",
       "purpose": "确认是否进入 20% 灰度，并明确回滚阈值和最后行动项。"
+    },
+    {
+      "event_id": "requirement_alignment",
+      "minutes_id": "requirement_alignment_minutes",
+      "topic": "需求澄清与范围对齐会",
+      "purpose": "确认 MVP 边界、会前背景包和预览态原则。"
+    },
+    {
+      "event_id": "architecture_review",
+      "minutes_id": "architecture_review_minutes",
+      "topic": "架构深评会",
+      "purpose": "确认抽取流水线、P95 gate、reconcile 只读边界。"
+    },
+    {
+      "event_id": "security_review",
+      "minutes_id": "security_review_minutes",
+      "topic": "安全评审会",
+      "purpose": "确认权限、日志脱敏和上线阻断项。"
+    },
+    {
+      "event_id": "evaluation_calibration",
+      "minutes_id": "evaluation_calibration_minutes",
+      "topic": "评测口径校准会",
+      "purpose": "冻结 action item、source coverage、reconcile 和权限评测口径。"
+    },
+    {
+      "event_id": "customer_feedback_review",
+      "minutes_id": "customer_feedback_review_minutes",
+      "topic": "客户反馈复盘会",
+      "purpose": "确认灰度客户反馈中的 P0/P1 修复项。"
+    },
+    {
+      "event_id": "launch_review",
+      "minutes_id": "launch_retro_minutes",
+      "topic": "灰度上线复盘会",
+      "purpose": "回顾 20% 灰度指标并决定是否扩大灰度。"
     }
   ],
   "priority_questions": [
     "上次技术评审会的主要风险是什么？",
     "灰度上线流程是什么？",
     "Go/No-Go 会后谁负责补客服 FAQ？",
-    "当前还有哪些阻塞没有关闭？"
+    "当前还有哪些阻塞没有关闭？",
+    "下次 50% 灰度决策会前还有哪些 P0 阻塞？",
+    "哪些行动项在 tasks.json 和 priority board 中状态不一致？",
+    "安全评审对 mock 数据和日志字段提出了哪些硬约束？",
+    "客户反馈复盘中哪些问题进入 P0 修复？",
+    "长会议 P95 为什么阻止了 50% 灰度？",
+    "会前背景包应该引用哪些 docs、minutes 和未完成任务？",
+    "哪些 blocked 项缺少 blocker，需要项目经理追问？",
+    "为什么 Reconciler 不能直接覆盖人工看板？"
   ]
 }

@@ -1,42 +1,293 @@
 [
   {
+    "event_id": "requirement_alignment",
+    "title": "智能会议纪要 2.0 需求澄清与范围对齐",
+    "start": "2026-04-18T15:00:00+08:00",
+    "end": "2026-04-18T16:00:00+08:00",
+    "attendees": [
+      "林舟",
+      "王越",
+      "苏晴",
+      "周岚",
+      "陈墨"
+    ],
+    "purpose": "确认 MVP 边界、非目标、会前背景包和预览态原则。",
+    "related_minutes": "requirement_alignment_minutes",
+    "related_docs": [
+      "requirements_traceability_matrix.md",
+      "prd_meeting_minutes_2.md"
+    ]
+  },
+  {
     "event_id": "product_review",
     "title": "智能会议纪要 2.0 产品评审",
     "start": "2026-04-19T10:00:00+08:00",
     "end": "2026-04-19T11:00:00+08:00",
-    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "attendees": [
+      "林舟",
+      "周岚",
+      "陈墨",
+      "苏晴",
+      "王越"
+    ],
     "purpose": "确认 MVP 范围、用户价值和暂不上线能力。",
     "related_minutes": "product_review_minutes",
-    "related_docs": ["prd_meeting_minutes_2.md", "project_overview.md"]
+    "related_docs": [
+      "prd_meeting_minutes_2.md",
+      "project_overview.md"
+    ]
+  },
+  {
+    "event_id": "permission_model_review",
+    "title": "权限模型与数据边界评审",
+    "start": "2026-04-20T11:00:00+08:00",
+    "end": "2026-04-20T12:00:00+08:00",
+    "attendees": [
+      "何澈",
+      "林舟",
+      "周岚",
+      "王越"
+    ],
+    "purpose": "确认会前背景包和会议纪要可见性边界。",
+    "related_minutes": "",
+    "related_docs": [
+      "permission_model_data_boundary.md",
+      "security_privacy_design.md"
+    ]
   },
   {
     "event_id": "tech_review",
     "title": "纪要结构化抽取服务技术评审",
     "start": "2026-04-21T14:00:00+08:00",
     "end": "2026-04-21T15:30:00+08:00",
-    "attendees": ["周岚", "陈墨", "王越", "林舟"],
+    "attendees": [
+      "周岚",
+      "陈墨",
+      "王越",
+      "林舟"
+    ],
     "purpose": "确认抽取服务架构、性能目标和主要风险。",
     "related_minutes": "tech_review_minutes",
-    "related_docs": ["tech_structured_extraction.md", "test_checklist_quality.md"]
+    "related_docs": [
+      "tech_structured_extraction.md",
+      "test_checklist_quality.md"
+    ]
+  },
+  {
+    "event_id": "architecture_review",
+    "title": "智能会议纪要 2.0 架构深评",
+    "start": "2026-04-22T14:00:00+08:00",
+    "end": "2026-04-22T15:30:00+08:00",
+    "attendees": [
+      "周岚",
+      "赵一诺",
+      "蒋予",
+      "陈墨",
+      "王越",
+      "林舟"
+    ],
+    "purpose": "评审结构化抽取流水线、任务同步契约和性能 gate。",
+    "related_minutes": "architecture_review_minutes",
+    "related_docs": [
+      "architecture_structured_pipeline.md",
+      "integration_contract_task_sync.md"
+    ]
+  },
+  {
+    "event_id": "security_review",
+    "title": "智能会议纪要 2.0 安全评审",
+    "start": "2026-04-23T10:00:00+08:00",
+    "end": "2026-04-23T11:00:00+08:00",
+    "attendees": [
+      "何澈",
+      "周岚",
+      "林舟",
+      "王越",
+      "陈墨",
+      "苏晴"
+    ],
+    "purpose": "确认权限越权、日志脱敏、外部客户会议处理和上线阻断项。",
+    "related_minutes": "security_review_minutes",
+    "related_docs": [
+      "security_privacy_design.md",
+      "permission_model_data_boundary.md"
+    ]
+  },
+  {
+    "event_id": "evaluation_calibration",
+    "title": "评测口径校准会",
+    "start": "2026-04-24T16:00:00+08:00",
+    "end": "2026-04-24T17:00:00+08:00",
+    "attendees": [
+      "陈墨",
+      "林舟",
+      "周岚",
+      "王越",
+      "何澈"
+    ],
+    "purpose": "冻结 action item、source coverage、reconcile 和权限评测口径。",
+    "related_minutes": "evaluation_calibration_minutes",
+    "related_docs": [
+      "evaluation_acceptance_plan.md",
+      "test_checklist_quality.md"
+    ]
+  },
+  {
+    "event_id": "customer_feedback_review",
+    "title": "灰度客户反馈复盘",
+    "start": "2026-04-25T15:00:00+08:00",
+    "end": "2026-04-25T16:00:00+08:00",
+    "attendees": [
+      "苏晴",
+      "林舟",
+      "陈墨",
+      "蒋予",
+      "王越",
+      "周岚"
+    ],
+    "purpose": "复盘 mock 客户 A/B/C 反馈，确认 P0/P1 修复项。",
+    "related_minutes": "customer_feedback_review_minutes",
+    "related_docs": [
+      "customer_feedback_round1.md",
+      "faq_user_feedback.md"
+    ]
+  },
+  {
+    "event_id": "qa_bug_bash",
+    "title": "上线前缺陷集中验证",
+    "start": "2026-04-26T19:00:00+08:00",
+    "end": "2026-04-26T20:00:00+08:00",
+    "attendees": [
+      "陈墨",
+      "周岚",
+      "蒋予",
+      "王越"
+    ],
+    "purpose": "集中验证误召回、重复行动项、移动端卡片和 evidence_id。",
+    "related_minutes": "",
+    "related_docs": [
+      "evaluation_acceptance_plan.md",
+      "architecture_structured_pipeline.md"
+    ]
   },
   {
     "event_id": "go_no_go_review",
     "title": "智能会议纪要 2.0 上线前 Go/No-Go",
     "start": "2026-04-27T16:00:00+08:00",
     "end": "2026-04-27T17:00:00+08:00",
-    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "attendees": [
+      "林舟",
+      "周岚",
+      "陈墨",
+      "苏晴",
+      "王越"
+    ],
     "purpose": "确认是否进入 20% 灰度，并明确回滚阈值和最后行动项。",
     "related_minutes": "go_no_go_minutes",
-    "related_docs": ["release_sop_gray_rollback.md", "faq_user_feedback.md", "test_checklist_quality.md"]
+    "related_docs": [
+      "release_sop_gray_rollback.md",
+      "faq_user_feedback.md",
+      "test_checklist_quality.md"
+    ]
+  },
+  {
+    "event_id": "release_readiness",
+    "title": "灰度上线准备检查",
+    "start": "2026-04-28T10:30:00+08:00",
+    "end": "2026-04-28T11:30:00+08:00",
+    "attendees": [
+      "林舟",
+      "王越",
+      "周岚",
+      "陈墨",
+      "苏晴",
+      "何澈",
+      "赵一诺"
+    ],
+    "purpose": "确认回滚 SOP、监控面板、客服 FAQ 和安全 gate。",
+    "related_minutes": "",
+    "related_docs": [
+      "rollout_observability_plan.md",
+      "release_sop_gray_rollback.md"
+    ]
+  },
+  {
+    "event_id": "pilot_war_room_day1",
+    "title": "20% 灰度首日 War Room",
+    "start": "2026-05-01T10:00:00+08:00",
+    "end": "2026-05-01T18:00:00+08:00",
+    "attendees": [
+      "王越",
+      "周岚",
+      "陈墨",
+      "苏晴",
+      "赵一诺"
+    ],
+    "purpose": "跟踪灰度首日成功率、P95、任务预览确认率和客服反馈。",
+    "related_minutes": "",
+    "related_docs": [
+      "rollout_observability_plan.md",
+      "customer_feedback_round1.md"
+    ]
+  },
+  {
+    "event_id": "pilot_metrics_review_day3",
+    "title": "灰度第三天指标复核",
+    "start": "2026-05-03T16:00:00+08:00",
+    "end": "2026-05-03T17:00:00+08:00",
+    "attendees": [
+      "林舟",
+      "周岚",
+      "陈墨",
+      "王越",
+      "苏晴"
+    ],
+    "purpose": "复核摘要成功率、P95、确认率和客户反馈入库进度。",
+    "related_minutes": "",
+    "related_docs": [
+      "post_launch_retro.md",
+      "evaluation_acceptance_plan.md"
+    ]
   },
   {
     "event_id": "launch_review",
     "title": "智能会议纪要 2.0 灰度上线回顾",
     "start": "2026-05-06T15:00:00+08:00",
     "end": "2026-05-06T16:00:00+08:00",
-    "attendees": ["林舟", "周岚", "陈墨", "苏晴", "王越"],
+    "attendees": [
+      "林舟",
+      "周岚",
+      "陈墨",
+      "苏晴",
+      "王越"
+    ],
     "purpose": "回顾 20% 灰度数据、用户反馈和是否扩大灰度。",
+    "related_minutes": "launch_retro_minutes",
+    "related_docs": [
+      "post_launch_retro.md",
+      "customer_feedback_round1.md",
+      "rollout_observability_plan.md"
+    ]
+  },
+  {
+    "event_id": "expansion_decision",
+    "title": "50% 灰度放量决策会",
+    "start": "2026-05-08T10:00:00+08:00",
+    "end": "2026-05-08T11:00:00+08:00",
+    "attendees": [
+      "林舟",
+      "王越",
+      "周岚",
+      "陈墨",
+      "何澈",
+      "苏晴"
+    ],
+    "purpose": "基于上线复盘行动项决定是否扩大到 50% 灰度。",
     "related_minutes": "",
-    "related_docs": ["project_overview.md", "faq_user_feedback.md"]
+    "related_docs": [
+      "post_launch_retro.md",
+      "rollout_observability_plan.md",
+      "evaluation_acceptance_plan.md"
+    ]
   }
 ]

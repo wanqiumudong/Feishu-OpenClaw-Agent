@@ -25,5 +25,50 @@
     "expected_due_dates": ["2026-04-20", "2026-04-22"],
     "expected_background_keywords": ["project_overview", "faq_user_feedback"],
     "notes": "检查产品评审行动项"
+  },
+  {
+    "id": "POST-004",
+    "minutes_id": "go_no_go_minutes",
+    "min_actions": 4,
+    "expected_owners": ["周岚", "陈墨", "苏晴", "王越"],
+    "expected_due_dates": ["2026-04-29", "2026-04-30"],
+    "expected_background_keywords": ["release_sop_gray_rollback", "test_checklist_quality", "faq_user_feedback", "project_overview"],
+    "notes": "检查 Go/No-Go 会后是否完整抽取四个行动项"
+  },
+  {
+    "id": "POST-005",
+    "minutes_id": "go_no_go_minutes",
+    "min_actions": 1,
+    "expected_owners": ["王越"],
+    "expected_due_dates": ["2026-04-29"],
+    "expected_background_keywords": ["project_overview"],
+    "notes": "检查推进总表更新行动项是否进入任务预览"
+  },
+  {
+    "id": "POST-006",
+    "minutes_id": "go_no_go_minutes",
+    "min_actions": 1,
+    "expected_owners": ["苏晴"],
+    "expected_due_dates": ["2026-04-30"],
+    "expected_background_keywords": ["faq_user_feedback", "release_sop_gray_rollback"],
+    "notes": "检查客服 FAQ 回滚说明行动项的 owner、due date 和背景资料"
+  },
+  {
+    "id": "POST-007",
+    "minutes_id": "tech_review_minutes",
+    "min_actions": 3,
+    "expected_owners": ["周岚", "陈墨", "王越"],
+    "expected_due_dates": ["2026-04-24", "2026-04-25"],
+    "expected_background_keywords": ["project_overview", "tech_structured_extraction", "test_checklist_quality"],
+    "notes": "检查技术评审中压测、误召回和风险同步三类行动项"
+  },
+  {
+    "id": "POST-008",
+    "minutes_id": "product_review_minutes",
+    "min_actions": 3,
+    "expected_owners": ["林舟", "王越", "苏晴"],
+    "expected_due_dates": ["2026-04-20", "2026-04-22"],
+    "expected_background_keywords": ["project_overview", "prd_meeting_minutes_2", "faq_user_feedback"],
+    "notes": "检查产品评审中 PRD 范围、结论同步和用户反馈三类行动项"
   }
 ]

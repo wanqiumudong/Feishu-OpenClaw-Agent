@@ -4,7 +4,7 @@
     "event_id": "go_no_go_review",
     "expected_keywords": ["会前背景包", "会议目的", "未关闭风险", "待确认问题"],
     "min_sources": 3,
-    "notes": "检查 Go/No-Go 会前包结构"
+    "notes": "检查 Go/No-Go 会前包基本结构"
   },
   {
     "id": "PRE-002",
@@ -19,5 +19,40 @@
     "expected_keywords": ["产品", "关键决策", "必读资料"],
     "min_sources": 2,
     "notes": "检查产品评审会前包"
+  },
+  {
+    "id": "PRE-004",
+    "event_id": "launch_review",
+    "expected_keywords": ["灰度上线回顾", "用户反馈", "扩大灰度"],
+    "min_sources": 2,
+    "notes": "检查上线复盘会前包；event_id 已存在于 data/calendar/events.json，但当前没有 related_minutes"
+  },
+  {
+    "id": "PRE-005",
+    "event_id": "go_no_go_review",
+    "expected_keywords": ["20% 灰度", "P95 接近 11 秒", "客服 FAQ", "推进总表"],
+    "min_sources": 3,
+    "notes": "检查 Go/No-Go 会前包是否暴露上线决策、性能风险、FAQ 和推进表漏项"
+  },
+  {
+    "id": "PRE-006",
+    "event_id": "tech_review",
+    "expected_keywords": ["异步队列", "已确认字段", "误召回", "长会议"],
+    "min_sources": 3,
+    "notes": "检查技术评审会前包是否覆盖架构决策和核心风险"
+  },
+  {
+    "id": "PRE-007",
+    "event_id": "product_review",
+    "expected_keywords": ["MVP", "自动周报", "行动项", "知识链接"],
+    "min_sources": 3,
+    "notes": "检查产品评审会前包是否覆盖范围边界和行动项来源要求"
+  },
+  {
+    "id": "PRE-008",
+    "event_id": "launch_review",
+    "expected_keywords": ["必读资料", "未关闭风险", "待确认问题", "灰度"],
+    "min_sources": 2,
+    "notes": "检查上线回顾会前包是否能在缺少纪要时仍聚合资料和风险"
   }
 ]

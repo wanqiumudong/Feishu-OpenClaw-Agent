@@ -1,7 +1,9 @@
 import re
 
 from distribution.renderer import render_post_meeting_actions
+from llm.client import LLMClient
 from models import ActionPreview, PostMeetingResult, SourceRef
+from orchestration.llm_tasks import llm_post_meeting_json
 from providers.mock_provider import MockProvider
 
 
@@ -12,8 +14,28 @@ def build_post_meeting_actions(provider: MockProvider, minutes_id: str) -> PostM
         decisions = _extract_section_bullets(minutes.content, "## 关键决策")
     actions = _extract_actions(minutes.content, minutes)
     sources = [SourceRef(id=minutes.id, title=minutes.title, kind=minutes.kind, path=minutes.source_path)]
+    llm_result = _try_llm_actions(provider, minutes.content, sources[0])
+    if llm_result:
+        llm_decisions, llm_actions = llm_result
+        if llm_decisions:
+            decisions = llm_decisions
+        if llm_actions:
+            actions = llm_actions
     markdown = render_post_meeting_actions(minutes.title, decisions, actions, sources)
     return PostMeetingResult(markdown=markdown, actions=actions, decisions=decisions, sources=sources)
+
+
+def _try_llm_actions(provider: MockProvider, content: str, source: SourceRef):
+    settings = getattr(provider, "settings", None)
+    if not settings:
+        return None
+    client = LLMClient(settings)
+    if not client.available:
+        return None
+    try:
+        return llm_post_meeting_json(client, content, source)
+    except Exception:
+        return None
 
 
 def _extract_actions(content: str, minutes) -> list[ActionPreview]:

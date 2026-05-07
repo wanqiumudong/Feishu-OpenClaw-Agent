@@ -7,16 +7,22 @@ name = "meetingflow-agent"
 version = "0.1.0"
 description = "Mock-driven MeetingFlow Agent bootstrap for Feishu AI Challenge"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "lark-oapi>=1.0.0",
+]
 
 [project.scripts]
 meetingflow = "main:main"
 meetingflow-eval = "evaluation.run_eval:main"
+meetingflow-data = "evaluation.generate_data:main"
+meetingflow-server = "server.main:main"
 
 [tool.setuptools]
 py-modules = ["config", "main", "models"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["distribution*", "evaluation*", "pipelines*", "providers*", "retrieval*", "utils*"]
+include = ["distribution*", "evaluation*", "llm*", "orchestration*", "pipelines*", "providers*", "retrieval*", "server*", "utils*"]
 namespaces = true

@@ -1,6 +1,10 @@
 import unittest
 
 from config import Settings
+from orchestration.agent_report import build_agent_report
+from orchestration.evidence_graph import build_evidence_graph
+from orchestration.graphrag_answer import answer_with_graphrag
+from orchestration.submission_pack import build_submission_pack
 from providers.mock_provider import MockProvider
 from pipelines.post_meeting_actions import build_post_meeting_actions
 from pipelines.pre_meeting_brief import build_pre_meeting_brief
@@ -43,6 +47,31 @@ class BootstrapSmokeTest(unittest.TestCase):
             len(result.new_items) + len(result.status_updates) + len(result.blocker_updates),
             1,
         )
+
+    def test_agent_report_generates_engineering_trace(self):
+        result = build_agent_report(self.provider)
+        self.assertIn("工程化报告", result.markdown)
+        self.assertIn("工作流 Trace", result.markdown)
+        self.assertGreaterEqual(len(result.sources), 4)
+
+    def test_evidence_graph_generates_mermaid_trace(self):
+        result = build_evidence_graph(self.provider, "Go/No-Go 灰度发布")
+        self.assertIn("Evidence Graph", result.markdown)
+        self.assertIn("```mermaid", result.markdown)
+        self.assertGreaterEqual(len(result.sources), 1)
+
+    def test_graphrag_answer_uses_graph_expansion(self):
+        result = answer_with_graphrag(self.provider, "Go/No-Go 灰度发布有哪些阻塞？")
+        self.assertIn("GraphRAG Answer", result.markdown)
+        self.assertIn("Graph Retrieval Trace", result.markdown)
+        self.assertIn("Microsoft GraphRAG-aligned Context", result.markdown)
+        self.assertGreaterEqual(len(result.sources), 3)
+
+    def test_submission_pack_generates_form_sections(self):
+        result = build_submission_pack(self.provider, self.settings.project_root)
+        self.assertIn("Demo 展示", result.markdown)
+        self.assertIn("核心部分代码展示", result.markdown)
+        self.assertIn("AI 亮点介绍", result.markdown)
 
 
 if __name__ == "__main__":

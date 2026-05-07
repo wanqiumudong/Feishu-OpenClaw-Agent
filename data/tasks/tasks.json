@@ -1,16 +1,733 @@
 [
-  {"id": "task_001", "title": "冻结 PRD MVP 范围", "owner": "林舟", "priority": "P0", "due_date": "2026-04-20", "status": "done", "source": "product_review_minutes", "blocker": "", "related_links": ["data/docs/prd_meeting_minutes_2.md"]},
-  {"id": "task_002", "title": "整理产品评审结论到项目群", "owner": "王越", "priority": "P1", "due_date": "2026-04-20", "status": "done", "source": "product_review_minutes", "blocker": "", "related_links": ["data/minutes/product_review_minutes.md"]},
-  {"id": "task_003", "title": "收集灰度用户常见问题", "owner": "苏晴", "priority": "P1", "due_date": "2026-04-22", "status": "done", "source": "product_review_minutes", "blocker": "", "related_links": ["data/docs/faq_user_feedback.md"]},
-  {"id": "task_004", "title": "补充长会议压测报告", "owner": "周岚", "priority": "P0", "due_date": "2026-04-24", "status": "in_progress", "source": "tech_review_minutes", "blocker": "长会议样本不足", "related_links": ["data/docs/tech_structured_extraction.md"]},
-  {"id": "task_005", "title": "补充误召回样本集", "owner": "陈墨", "priority": "P0", "due_date": "2026-04-25", "status": "in_progress", "source": "tech_review_minutes", "blocker": "非任务型承诺句样本不足", "related_links": ["data/docs/test_checklist_quality.md"]},
-  {"id": "task_006", "title": "把技术风险同步到推进总表", "owner": "王越", "priority": "P1", "due_date": "2026-04-25", "status": "blocked", "source": "tech_review_minutes", "blocker": "等待压测报告字段", "related_links": ["data/base/priority_board.csv"]},
-  {"id": "task_007", "title": "补充灰度监控面板", "owner": "周岚", "priority": "P0", "due_date": "2026-04-29", "status": "todo", "source": "go_no_go_minutes", "blocker": "", "related_links": ["data/docs/release_sop_gray_rollback.md"]},
-  {"id": "task_008", "title": "完成长会议回归测试", "owner": "陈墨", "priority": "P0", "due_date": "2026-04-30", "status": "todo", "source": "go_no_go_minutes", "blocker": "等待压测样本", "related_links": ["data/docs/test_checklist_quality.md"]},
-  {"id": "task_009", "title": "补齐客服 FAQ 回滚说明", "owner": "苏晴", "priority": "P0", "due_date": "2026-04-30", "status": "todo", "source": "go_no_go_minutes", "blocker": "灰度沟通口径待确认", "related_links": ["data/docs/faq_user_feedback.md", "data/docs/release_sop_gray_rollback.md"]},
-  {"id": "task_010", "title": "更新重点事项推进总表", "owner": "王越", "priority": "P1", "due_date": "2026-04-29", "status": "todo", "source": "go_no_go_minutes", "blocker": "", "related_links": ["data/base/priority_board.csv"]},
-  {"id": "task_011", "title": "确认 Go/No-Go 会议结论同步", "owner": "林舟", "priority": "P0", "due_date": "2026-04-27", "status": "todo", "source": "go_no_go_minutes", "blocker": "", "related_links": ["data/minutes/go_no_go_minutes.md"]},
-  {"id": "task_012", "title": "整理客服灰度沟通文案", "owner": "苏晴", "priority": "P1", "due_date": "2026-04-30", "status": "todo", "source": "faq_user_feedback", "blocker": "等待回滚说明", "related_links": ["data/docs/faq_user_feedback.md"]},
-  {"id": "task_013", "title": "确认结构化结果表字段", "owner": "周岚", "priority": "P1", "due_date": "2026-04-28", "status": "in_progress", "source": "tech_structured_extraction", "blocker": "", "related_links": ["data/docs/tech_structured_extraction.md"]},
-  {"id": "task_014", "title": "准备上线回顾会议材料", "owner": "王越", "priority": "P2", "due_date": "2026-05-05", "status": "todo", "source": "launch_review", "blocker": "", "related_links": ["data/calendar/events.json"]}
+  {
+    "id": "task_001",
+    "title": "冻结 PRD MVP 范围",
+    "owner": "林舟",
+    "priority": "P0",
+    "due_date": "2026-04-20",
+    "status": "done",
+    "source": "product_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/prd_meeting_minutes_2.md"
+    ]
+  },
+  {
+    "id": "task_002",
+    "title": "整理产品评审结论到项目群",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-04-20",
+    "status": "done",
+    "source": "product_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/minutes/product_review_minutes.md"
+    ]
+  },
+  {
+    "id": "task_003",
+    "title": "收集灰度用户常见问题",
+    "owner": "苏晴",
+    "priority": "P1",
+    "due_date": "2026-04-22",
+    "status": "done",
+    "source": "product_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/faq_user_feedback.md"
+    ]
+  },
+  {
+    "id": "task_004",
+    "title": "补充长会议压测报告",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-24",
+    "status": "in_progress",
+    "source": "tech_review_minutes",
+    "blocker": "长会议样本不足",
+    "related_links": [
+      "data/docs/tech_structured_extraction.md"
+    ]
+  },
+  {
+    "id": "task_005",
+    "title": "补充误召回样本集",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "in_progress",
+    "source": "tech_review_minutes",
+    "blocker": "非任务型承诺句样本不足",
+    "related_links": [
+      "data/docs/test_checklist_quality.md"
+    ]
+  },
+  {
+    "id": "task_006",
+    "title": "把技术风险同步到推进总表",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-04-25",
+    "status": "blocked",
+    "source": "tech_review_minutes",
+    "blocker": "等待压测报告字段",
+    "related_links": [
+      "data/base/priority_board.csv"
+    ]
+  },
+  {
+    "id": "task_007",
+    "title": "补充灰度监控面板",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-29",
+    "status": "todo",
+    "source": "go_no_go_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/release_sop_gray_rollback.md"
+    ]
+  },
+  {
+    "id": "task_008",
+    "title": "完成长会议回归测试",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-30",
+    "status": "todo",
+    "source": "go_no_go_minutes",
+    "blocker": "等待压测样本",
+    "related_links": [
+      "data/docs/test_checklist_quality.md"
+    ]
+  },
+  {
+    "id": "task_009",
+    "title": "补齐客服 FAQ 回滚说明",
+    "owner": "苏晴",
+    "priority": "P0",
+    "due_date": "2026-04-30",
+    "status": "todo",
+    "source": "go_no_go_minutes",
+    "blocker": "灰度沟通口径待确认",
+    "related_links": [
+      "data/docs/faq_user_feedback.md",
+      "data/docs/release_sop_gray_rollback.md"
+    ]
+  },
+  {
+    "id": "task_010",
+    "title": "更新重点事项推进总表",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-04-29",
+    "status": "todo",
+    "source": "go_no_go_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/base/priority_board.csv"
+    ]
+  },
+  {
+    "id": "task_011",
+    "title": "确认 Go/No-Go 会议结论同步",
+    "owner": "林舟",
+    "priority": "P0",
+    "due_date": "2026-04-27",
+    "status": "todo",
+    "source": "go_no_go_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/minutes/go_no_go_minutes.md"
+    ]
+  },
+  {
+    "id": "task_012",
+    "title": "整理客服灰度沟通文案",
+    "owner": "苏晴",
+    "priority": "P1",
+    "due_date": "2026-04-30",
+    "status": "todo",
+    "source": "faq_user_feedback",
+    "blocker": "等待回滚说明",
+    "related_links": [
+      "data/docs/faq_user_feedback.md"
+    ]
+  },
+  {
+    "id": "task_013",
+    "title": "确认结构化结果表字段",
+    "owner": "周岚",
+    "priority": "P1",
+    "due_date": "2026-04-28",
+    "status": "in_progress",
+    "source": "tech_structured_extraction",
+    "blocker": "",
+    "related_links": [
+      "data/docs/tech_structured_extraction.md"
+    ]
+  },
+  {
+    "id": "task_014",
+    "title": "准备上线回顾会议材料",
+    "owner": "王越",
+    "priority": "P2",
+    "due_date": "2026-05-05",
+    "status": "todo",
+    "source": "launch_review",
+    "blocker": "",
+    "related_links": [
+      "data/calendar/events.json"
+    ]
+  },
+  {
+    "id": "task_015",
+    "title": "把不上线项写入 PRD 和背景包",
+    "owner": "林舟",
+    "priority": "P0",
+    "due_date": "2026-04-19",
+    "status": "done",
+    "source": "requirement_alignment_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/minutes/requirement_alignment_minutes.md",
+      "data/docs/requirements_traceability_matrix.md"
+    ]
+  },
+  {
+    "id": "task_016",
+    "title": "补齐会前背景包日历事件",
+    "owner": "王越",
+    "priority": "P0",
+    "due_date": "2026-04-19",
+    "status": "done",
+    "source": "requirement_alignment_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/calendar/events.json"
+    ]
+  },
+  {
+    "id": "task_017",
+    "title": "冻结评测样本分层",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "done",
+    "source": "evaluation_calibration_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/evaluation_acceptance_plan.md"
+    ]
+  },
+  {
+    "id": "task_018",
+    "title": "完成权限越权用例清单",
+    "owner": "何澈",
+    "priority": "P0",
+    "due_date": "2026-04-24",
+    "status": "done",
+    "source": "security_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/security_privacy_design.md"
+    ]
+  },
+  {
+    "id": "task_019",
+    "title": "补日志脱敏检查",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "done",
+    "source": "security_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/security_privacy_design.md"
+    ]
+  },
+  {
+    "id": "task_020",
+    "title": "把客户反馈改成 mock 标签",
+    "owner": "苏晴",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "done",
+    "source": "security_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_021",
+    "title": "把安全阻断项写入 Go/No-Go checklist",
+    "owner": "王越",
+    "priority": "P0",
+    "due_date": "2026-04-26",
+    "status": "done",
+    "source": "security_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/rollout_observability_plan.md"
+    ]
+  },
+  {
+    "id": "task_022",
+    "title": "提交 60 分钟会议二轮压测报告",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-24",
+    "status": "blocked",
+    "source": "architecture_review_minutes",
+    "blocker": "长会议样本不足，客户反馈复盘类会议还未补齐",
+    "related_links": [
+      "data/docs/architecture_structured_pipeline.md"
+    ]
+  },
+  {
+    "id": "task_023",
+    "title": "补任务同步幂等设计",
+    "owner": "赵一诺",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "in_progress",
+    "source": "architecture_review_minutes",
+    "blocker": "等待 extractor evidence_id 字段稳定",
+    "related_links": [
+      "data/docs/integration_contract_task_sync.md"
+    ]
+  },
+  {
+    "id": "task_024",
+    "title": "移动端预览卡片字段限制",
+    "owner": "蒋予",
+    "priority": "P1",
+    "due_date": "2026-04-26",
+    "status": "done",
+    "source": "architecture_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_025",
+    "title": "长会议重复行动项加入回归集",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-24",
+    "status": "done",
+    "source": "architecture_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/evaluation_acceptance_plan.md"
+    ]
+  },
+  {
+    "id": "task_026",
+    "title": "冻结 60 条人工标注样本",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-25",
+    "status": "in_progress",
+    "source": "evaluation_calibration_minutes",
+    "blocker": "客户反馈误召回样本还差 6 条",
+    "related_links": [
+      "data/docs/evaluation_acceptance_plan.md"
+    ]
+  },
+  {
+    "id": "task_027",
+    "title": "补充 priority board 冲突样例",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-04-25",
+    "status": "done",
+    "source": "evaluation_calibration_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/base/priority_board.csv",
+      "data/base/priority_board.json"
+    ]
+  },
+  {
+    "id": "task_028",
+    "title": "导出 evidence_id 字段",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-26",
+    "status": "in_progress",
+    "source": "evaluation_calibration_minutes",
+    "blocker": "需要兼容旧 mock output",
+    "related_links": [
+      "data/docs/architecture_structured_pipeline.md"
+    ]
+  },
+  {
+    "id": "task_029",
+    "title": "复核权限评测用例",
+    "owner": "何澈",
+    "priority": "P0",
+    "due_date": "2026-04-26",
+    "status": "done",
+    "source": "evaluation_calibration_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/security_privacy_design.md"
+    ]
+  },
+  {
+    "id": "task_030",
+    "title": "更新 FAQ 和客服话术",
+    "owner": "苏晴",
+    "priority": "P0",
+    "due_date": "2026-04-26",
+    "status": "in_progress",
+    "source": "customer_feedback_review_minutes",
+    "blocker": "降级说明仍缺产品确认",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md",
+      "data/docs/faq_user_feedback.md"
+    ]
+  },
+  {
+    "id": "task_031",
+    "title": "完成移动端预览卡片调整",
+    "owner": "蒋予",
+    "priority": "P0",
+    "due_date": "2026-04-27",
+    "status": "done",
+    "source": "customer_feedback_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_032",
+    "title": "客户误召回样本加入回归集",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-04-27",
+    "status": "blocked",
+    "source": "customer_feedback_review_minutes",
+    "blocker": "苏晴还未提供完整 mock 反馈证据",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md",
+      "data/docs/evaluation_acceptance_plan.md"
+    ]
+  },
+  {
+    "id": "task_033",
+    "title": "确认 2.1 backlog",
+    "owner": "林舟",
+    "priority": "P1",
+    "due_date": "2026-04-28",
+    "status": "in_progress",
+    "source": "customer_feedback_review_minutes",
+    "blocker": "自动周报和历史权限变更仍需单独评估",
+    "related_links": [
+      "data/docs/requirements_traceability_matrix.md"
+    ]
+  },
+  {
+    "id": "task_034",
+    "title": "补齐监控面板失败率和 P95 图",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-04-29",
+    "status": "done",
+    "source": "go_no_go_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/rollout_observability_plan.md"
+    ]
+  },
+  {
+    "id": "task_035",
+    "title": "补齐结构化摘要降级文案",
+    "owner": "苏晴",
+    "priority": "P1",
+    "due_date": "2026-04-30",
+    "status": "blocked",
+    "source": "go_no_go_minutes",
+    "blocker": "产品侧未确认“摘要延迟生成”用户提示口径",
+    "related_links": [
+      "data/docs/rollout_observability_plan.md",
+      "data/docs/faq_user_feedback.md"
+    ]
+  },
+  {
+    "id": "task_036",
+    "title": "完成任务同步开关演练",
+    "owner": "赵一诺",
+    "priority": "P0",
+    "due_date": "2026-04-30",
+    "status": "done",
+    "source": "release_readiness",
+    "blocker": "",
+    "related_links": [
+      "data/docs/rollout_observability_plan.md",
+      "data/docs/integration_contract_task_sync.md"
+    ]
+  },
+  {
+    "id": "task_037",
+    "title": "灰度首日 War Room 值班排班",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-04-30",
+    "status": "done",
+    "source": "release_readiness",
+    "blocker": "",
+    "related_links": [
+      "data/calendar/events.json"
+    ]
+  },
+  {
+    "id": "task_038",
+    "title": "首日摘要成功率日报",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-05-01",
+    "status": "done",
+    "source": "pilot_war_room_day1",
+    "blocker": "",
+    "related_links": [
+      "data/docs/post_launch_retro.md"
+    ]
+  },
+  {
+    "id": "task_039",
+    "title": "首日客服反馈分类",
+    "owner": "苏晴",
+    "priority": "P0",
+    "due_date": "2026-05-01",
+    "status": "done",
+    "source": "pilot_war_room_day1",
+    "blocker": "",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_040",
+    "title": "任务预览确认率统计",
+    "owner": "王越",
+    "priority": "P0",
+    "due_date": "2026-05-02",
+    "status": "done",
+    "source": "pilot_war_room_day1",
+    "blocker": "",
+    "related_links": [
+      "data/docs/post_launch_retro.md"
+    ]
+  },
+  {
+    "id": "task_041",
+    "title": "证据片段缺失率指标补齐",
+    "owner": "赵一诺",
+    "priority": "P1",
+    "due_date": "2026-05-03",
+    "status": "in_progress",
+    "source": "rollout_observability_plan",
+    "blocker": "日志字段已出但面板过滤条件未联调",
+    "related_links": [
+      "data/docs/rollout_observability_plan.md"
+    ]
+  },
+  {
+    "id": "task_042",
+    "title": "长会议 P95 专项优化",
+    "owner": "周岚",
+    "priority": "P0",
+    "due_date": "2026-05-08",
+    "status": "in_progress",
+    "source": "launch_retro_minutes",
+    "blocker": "60 分钟会议二轮样本仍有 10.8 秒批次",
+    "related_links": [
+      "data/minutes/launch_retro_minutes.md",
+      "data/docs/post_launch_retro.md"
+    ]
+  },
+  {
+    "id": "task_043",
+    "title": "客户反馈误召回样本补齐",
+    "owner": "陈墨",
+    "priority": "P0",
+    "due_date": "2026-05-08",
+    "status": "blocked",
+    "source": "launch_retro_minutes",
+    "blocker": "等待苏晴提供 mock 客户反馈证据片段",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_044",
+    "title": "清理 blocked 无 blocker 看板项",
+    "owner": "王越",
+    "priority": "P0",
+    "due_date": "2026-05-07",
+    "status": "todo",
+    "source": "launch_retro_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/base/priority_board.csv"
+    ]
+  },
+  {
+    "id": "task_045",
+    "title": "更新 FAQ 降级说明",
+    "owner": "苏晴",
+    "priority": "P1",
+    "due_date": "2026-05-08",
+    "status": "todo",
+    "source": "launch_retro_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/faq_user_feedback.md",
+      "data/docs/post_launch_retro.md"
+    ]
+  },
+  {
+    "id": "task_046",
+    "title": "主持 50% 灰度决策会",
+    "owner": "林舟",
+    "priority": "P0",
+    "due_date": "2026-05-08",
+    "status": "todo",
+    "source": "launch_retro_minutes",
+    "blocker": "依赖长会议 P95 和客户误召回样本补齐",
+    "related_links": [
+      "data/calendar/events.json",
+      "data/docs/post_launch_retro.md"
+    ]
+  },
+  {
+    "id": "task_047",
+    "title": "移动端证据片段 UI 验收",
+    "owner": "蒋予",
+    "priority": "P1",
+    "due_date": "2026-05-12",
+    "status": "todo",
+    "source": "post_launch_retro",
+    "blocker": "",
+    "related_links": [
+      "data/docs/post_launch_retro.md",
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_048",
+    "title": "历史会议权限变更方案调研",
+    "owner": "何澈",
+    "priority": "P2",
+    "due_date": "2026-05-15",
+    "status": "todo",
+    "source": "security_review_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/security_privacy_design.md"
+    ]
+  },
+  {
+    "id": "task_049",
+    "title": "正式任务标题 36 字限制联调",
+    "owner": "赵一诺",
+    "priority": "P1",
+    "due_date": "2026-05-10",
+    "status": "in_progress",
+    "source": "customer_feedback_review_minutes",
+    "blocker": "需要蒋予确认移动端展示最终稿",
+    "related_links": [
+      "data/docs/integration_contract_task_sync.md",
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_050",
+    "title": "自动周报 2.1 方案边界说明",
+    "owner": "林舟",
+    "priority": "P2",
+    "due_date": "2026-05-14",
+    "status": "todo",
+    "source": "requirements_traceability_matrix",
+    "blocker": "",
+    "related_links": [
+      "data/docs/requirements_traceability_matrix.md"
+    ]
+  },
+  {
+    "id": "task_051",
+    "title": "补齐会前背景包资料不足提示",
+    "owner": "王越",
+    "priority": "P1",
+    "due_date": "2026-05-09",
+    "status": "todo",
+    "source": "permission_model_data_boundary",
+    "blocker": "",
+    "related_links": [
+      "data/docs/permission_model_data_boundary.md",
+      "data/calendar/events.json"
+    ]
+  },
+  {
+    "id": "task_052",
+    "title": "灰度客户 FAQ 命中率样本统计",
+    "owner": "韩知远",
+    "priority": "P1",
+    "due_date": "2026-05-09",
+    "status": "in_progress",
+    "source": "customer_feedback_round1",
+    "blocker": "客服记录已脱敏，仍需苏晴确认分类口径",
+    "related_links": [
+      "data/docs/customer_feedback_round1.md"
+    ]
+  },
+  {
+    "id": "task_053",
+    "title": "Reconciler 输出字段验收",
+    "owner": "陈墨",
+    "priority": "P1",
+    "due_date": "2026-05-09",
+    "status": "todo",
+    "source": "evaluation_acceptance_plan",
+    "blocker": "",
+    "related_links": [
+      "data/docs/evaluation_acceptance_plan.md",
+      "data/base/priority_board.json"
+    ]
+  },
+  {
+    "id": "task_054",
+    "title": "上线复盘行动项同步到项目群",
+    "owner": "王越",
+    "priority": "P0",
+    "due_date": "2026-05-07",
+    "status": "done",
+    "source": "launch_retro_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/minutes/launch_retro_minutes.md",
+      "data/chats/project_chat.jsonl"
+    ]
+  },
+  {
+    "id": "task_055",
+    "title": "权限日志抽检报告",
+    "owner": "何澈",
+    "priority": "P1",
+    "due_date": "2026-05-10",
+    "status": "todo",
+    "source": "launch_retro_minutes",
+    "blocker": "",
+    "related_links": [
+      "data/docs/security_privacy_design.md",
+      "data/docs/post_launch_retro.md"
+    ]
+  }
 ]
