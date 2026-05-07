@@ -83,9 +83,9 @@ pyproject.toml        # Python package 配置
 python -m pip install -e .
 ```
 
-## 本地功能演示
+## 本地运行
 
-先运行四条核心 demo：
+先运行四条核心命令：
 
 ```bash
 meetingflow qa --question "上次技术评审会的主要风险是什么？"
@@ -94,7 +94,7 @@ meetingflow post-meeting --minutes go_no_go_minutes
 meetingflow reconcile
 ```
 
-如果要展示更完整的工程能力，可以继续运行：
+如果需要进一步查看工程能力，可以继续运行：
 
 ```bash
 meetingflow evidence-graph --topic "Go/No-Go 灰度发布"
@@ -105,7 +105,7 @@ meetingflow card-preview --workflow pre_meeting
 meetingflow agent-report
 ```
 
-完整 demo 脚本：
+完整脚本：
 
 ```bash
 bash scripts/run_full_demo.sh
@@ -166,17 +166,6 @@ meetingflow-eval full --scale 10
 - dry-run safety
 - 合成数据规模测试
 - 真实飞书 smoke check
-
-## 录屏建议
-
-推荐展示顺序：
-
-1. 先展示 README 首页和项目定位
-2. 运行 `bash scripts/run_full_demo.sh`
-3. 展示问答、会前、会后、对账
-4. 展示 Evidence Graph 和 GraphRAG
-5. 展示 `meetingflow-eval full --scale 10`
-6. 展示 `meetingflow real-smoke`
 
 ## 参考
 
