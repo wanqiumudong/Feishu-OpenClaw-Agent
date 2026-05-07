@@ -6,6 +6,40 @@ def build_index(bundle: DataBundle) -> list[KnowledgeItem]:
     items.extend(bundle.docs)
     items.extend(bundle.minutes)
 
+    for risk in bundle.truth.get("risks", []):
+        content = "；".join(
+            [
+                risk.get("title", ""),
+                f"owner：{risk.get('owner', '')}",
+                f"status：{risk.get('status', '')}",
+                f"阻塞：{risk.get('blocker', '')}",
+            ]
+        )
+        items.append(
+            KnowledgeItem(
+                id=f"truth_risk_{risk.get('title', '')}",
+                title=f"风险：{risk.get('title', '')}",
+                kind="truth",
+                content=content,
+                source_path="data/ground_truth/project_truth.json",
+                tags=["risk", risk.get("status", ""), risk.get("owner", "")],
+                metadata=risk,
+            )
+        )
+
+    for index, decision in enumerate(bundle.truth.get("decisions", []), start=1):
+        items.append(
+            KnowledgeItem(
+                id=f"truth_decision_{index:03d}",
+                title=f"决策：{decision.get('content', '')[:24]}",
+                kind="truth",
+                content=decision.get("content", ""),
+                source_path="data/ground_truth/project_truth.json",
+                tags=["decision", decision.get("date", "")],
+                metadata=decision,
+            )
+        )
+
     for message in bundle.chat_messages:
         items.append(
             KnowledgeItem(
@@ -51,6 +85,27 @@ def build_index(bundle: DataBundle) -> list[KnowledgeItem]:
                 source_path="data/base/priority_board.csv",
                 tags=[row["priority"], row["status"], row["owner"]],
                 metadata=row,
+            )
+        )
+
+    for event in bundle.calendar_events:
+        content = "；".join(
+            [
+                event.get("title", ""),
+                event.get("purpose", ""),
+                f"参会人：{'、'.join(event.get('attendees', []))}",
+                f"资料：{'、'.join(event.get('related_docs', []))}",
+            ]
+        )
+        items.append(
+            KnowledgeItem(
+                id=event["event_id"],
+                title=f"日历事件：{event['title']}",
+                kind="calendar",
+                content=content,
+                source_path="data/calendar/events.json",
+                tags=["calendar", event["event_id"]],
+                metadata=event,
             )
         )
     return items

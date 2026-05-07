@@ -4,41 +4,125 @@
     "question": "上次技术评审会的主要风险是什么？",
     "expected_keywords": ["长会议", "误判", "知识链接"],
     "expected_sources": ["tech_review_minutes", "test_checklist_quality"],
-    "notes": "检查技术风险回答是否覆盖主要风险"
+    "notes": "风险类 QA：检查技术评审风险回答是否覆盖延迟、误召回和知识链接"
   },
   {
     "id": "QA-002",
     "question": "灰度上线前要确认哪些事情？",
     "expected_keywords": ["回归测试", "客服 FAQ", "监控", "Go/No-Go"],
     "expected_sources": ["release_sop_gray_rollback", "go_no_go_minutes"],
-    "notes": "检查灰度上线准备项"
+    "notes": "灰度类 QA：检查上线前检查项聚合"
   },
   {
     "id": "QA-003",
     "question": "现在还有哪些未关闭阻塞？",
     "expected_keywords": ["owner", "阻塞"],
     "expected_sources": ["project_truth"],
-    "notes": "检查未关闭风险聚合"
+    "notes": "阻塞类 QA：检查未关闭风险聚合"
   },
   {
     "id": "QA-004",
     "question": "客服 FAQ 和回滚说明谁负责补齐？",
     "expected_keywords": ["客服", "FAQ", "回滚"],
     "expected_sources": ["go_no_go_minutes", "faq_user_feedback"],
-    "notes": "检查负责人和背景来源"
+    "notes": "行动项归属：检查客服 FAQ 的负责人和背景来源"
   },
   {
     "id": "QA-005",
     "question": "推进表里有哪些阻塞需要关注？",
     "expected_keywords": ["阻塞", "长会议", "误召回"],
     "expected_sources": ["priority_board"],
-    "notes": "检查推进表检索"
+    "notes": "推进表检索：检查 base 表中的风险和阻塞信息"
   },
   {
     "id": "QA-006",
     "question": "回滚阈值是什么？",
     "expected_keywords": ["3%", "P95", "12 秒"],
     "expected_sources": ["release_sop_gray_rollback"],
-    "notes": "检查 SOP 信息"
+    "notes": "SOP 检索：检查回滚阈值"
+  },
+  {
+    "id": "QA-007",
+    "question": "客户反馈出现高频误导性纪要时应该触发什么回滚判断？",
+    "expected_keywords": ["客服", "反馈", "回滚"],
+    "expected_sources": ["release_sop_gray_rollback", "faq_user_feedback"],
+    "notes": "客户反馈：检查客服反馈与回滚流程的连接"
+  },
+  {
+    "id": "QA-008",
+    "question": "自动周报为什么不进入本次 MVP？",
+    "expected_keywords": ["自动周报", "本次上线范围"],
+    "expected_sources": ["prd_meeting_minutes_2", "product_review_minutes"],
+    "notes": "范围约束：检查暂不上线能力和产品评审来源"
+  },
+  {
+    "id": "QA-009",
+    "question": "跨部门权限扩散为什么不应放进首版？",
+    "expected_keywords": ["权限", "自动周报", "风险"],
+    "expected_sources": ["prd_meeting_minutes_2", "product_review_minutes"],
+    "notes": "权限风险：检查跨部门权限和 MVP 边界"
+  },
+  {
+    "id": "QA-010",
+    "question": "行动项抽取的质量风险是什么？",
+    "expected_keywords": ["行动项", "误召回"],
+    "expected_sources": ["test_checklist_quality", "tech_structured_extraction"],
+    "notes": "质量风险：检查误召回与测试清单的检索"
+  },
+  {
+    "id": "QA-011",
+    "question": "非任务型承诺句为什么需要加入评测集？",
+    "expected_keywords": ["非任务型承诺句", "误召回", "评测集"],
+    "expected_sources": ["test_checklist_quality", "project_chat"],
+    "notes": "评测集补全：检查边界样本对行动项抽取的影响"
+  },
+  {
+    "id": "QA-012",
+    "question": "推进表漏了客服 FAQ 回滚说明这一项吗？",
+    "expected_keywords": ["推进表", "漏了", "客服 FAQ"],
+    "expected_sources": ["project_chat", "priority_board"],
+    "notes": "推进表漏项：检查群聊线索和推进表的差异"
+  },
+  {
+    "id": "QA-013",
+    "question": "当前任务状态和推进表有哪些冲突？",
+    "expected_keywords": ["推进表", "状态"],
+    "expected_sources": ["priority_board", "tasks"],
+    "notes": "状态冲突：检查任务系统和推进表之间的一致性"
+  },
+  {
+    "id": "QA-014",
+    "question": "谁负责在 4/29 前补充灰度监控面板？",
+    "expected_keywords": ["周岚", "4/29", "监控面板"],
+    "expected_sources": ["go_no_go_minutes", "tasks"],
+    "notes": "行动项 owner：检查截止时间和负责人"
+  },
+  {
+    "id": "QA-015",
+    "question": "长会议回归测试为什么还是阻塞？",
+    "expected_keywords": ["长会议", "回归测试", "样本"],
+    "expected_sources": ["test_checklist_quality", "project_chat"],
+    "notes": "阻塞补全：检查测试任务阻塞原因"
+  },
+  {
+    "id": "QA-016",
+    "question": "Go/No-Go 会议后需要同步哪些行动项？",
+    "expected_keywords": ["监控面板", "回归测试", "客服 FAQ", "推进总表"],
+    "expected_sources": ["go_no_go_minutes", "tasks"],
+    "notes": "会后行动项：检查会议纪要到任务预览的覆盖"
+  },
+  {
+    "id": "QA-017",
+    "question": "上线复盘会应该重点看哪些材料？",
+    "expected_keywords": ["上线", "复盘", "用户反馈"],
+    "expected_sources": ["events", "faq_user_feedback", "release_sop_gray_rollback"],
+    "notes": "复盘准备：检查上线回顾、FAQ 和 SOP 资料召回"
+  },
+  {
+    "id": "QA-018",
+    "question": "结构化抽取服务采用什么架构，前端读哪些字段？",
+    "expected_keywords": ["异步队列", "结构化结果表", "已确认字段"],
+    "expected_sources": ["tech_structured_extraction", "tech_review_minutes"],
+    "notes": "技术决策：检查架构决策和字段读取边界"
   }
 ]

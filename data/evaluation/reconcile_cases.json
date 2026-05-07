@@ -4,13 +4,41 @@
     "expected_new_item_keywords": ["监控面板", "回归测试", "客服"],
     "expected_blocker_keywords": ["阻塞", "延期", "漏了"],
     "min_sources": 3,
-    "notes": "检查新增事项和阻塞补全"
+    "notes": "新增事项和阻塞补全：检查 Go/No-Go 后任务与群聊阻塞线索"
   },
   {
     "id": "REC-002",
     "expected_new_item_keywords": ["灰度", "测试"],
     "expected_blocker_keywords": ["长会议", "回滚"],
     "min_sources": 3,
-    "notes": "检查任务和群聊对账"
+    "notes": "任务和群聊对账：检查灰度任务、测试阻塞与回滚口径"
+  },
+  {
+    "id": "REC-003",
+    "expected_new_item_keywords": ["重点事项推进总表", "Go/No-Go", "结构化结果表"],
+    "expected_blocker_keywords": ["压测报告", "等待"],
+    "min_sources": 3,
+    "notes": "推进表漏项：检查任务系统中存在但推进总表缺失的新增事项"
+  },
+  {
+    "id": "REC-004",
+    "expected_new_item_keywords": ["客服灰度沟通文案", "上线回顾会议材料"],
+    "expected_blocker_keywords": ["FAQ", "回滚说明"],
+    "min_sources": 3,
+    "notes": "来源数量和运营漏项：检查 FAQ、复盘材料和 source coverage"
+  },
+  {
+    "id": "REC-005",
+    "expected_new_item_keywords": ["确认结构化结果表字段", "补充灰度监控面板"],
+    "expected_blocker_keywords": ["样本", "误召回"],
+    "min_sources": 3,
+    "notes": "状态变化/冲突口径：当前 schema 不直接评分 status_updates，使用 notes 标注并用相关新增事项与阻塞词覆盖"
+  },
+  {
+    "id": "REC-006",
+    "expected_new_item_keywords": ["整理产品评审结论到项目群", "补齐客服 FAQ 回滚说明"],
+    "expected_blocker_keywords": ["延期", "长会议", "空白"],
+    "min_sources": 3,
+    "notes": "多来源对账：检查 product review、Go/No-Go、tasks、board 和 chat 共同形成的差异"
   }
 ]

@@ -4,3 +4,35 @@ item,owner,priority,due_date,status,latest_progress,blocker,source,related_doc,r
 技术风险同步推进表,王越,P1,2026-04-25,blocked,已同步部分风险,等待压测报告字段,技术评审会,data/base/priority_board.csv,tech_review_minutes
 PRD MVP 范围冻结,林舟,P0,2026-04-20,done,已冻结,,产品评审会,data/docs/prd_meeting_minutes_2.md,product_review_minutes
 灰度用户 FAQ 收集,苏晴,P1,2026-04-22,done,已收集初版,,产品评审会,data/docs/faq_user_feedback.md,product_review_minutes
+需求追踪矩阵补齐,林舟,P0,2026-04-19,done,已补 REQ-01 到 REQ-08,,需求澄清会,data/docs/requirements_traceability_matrix.md,requirement_alignment_minutes
+会前背景包日历事件,王越,P0,2026-04-19,done,已补 12 个以上事件,,需求澄清会,data/calendar/events.json,requirement_alignment_minutes
+权限越权用例清单,何澈,P0,2026-04-24,done,权限失败 0 容忍写入 gate,,安全评审会,data/docs/security_privacy_design.md,security_review_minutes
+日志脱敏检查,周岚,P0,2026-04-25,done,只记录 source_id 和 mock request 编号,,安全评审会,data/docs/security_privacy_design.md,security_review_minutes
+客户反馈 mock 标签替换,苏晴,P0,2026-04-25,done,客户 A/B/C 均为 mock 占位,,安全评审会,data/docs/customer_feedback_round1.md,security_review_minutes
+任务同步幂等设计,赵一诺,P0,2026-04-25,blocked,source_meeting+owner+title 规则已定,,架构深评会,data/docs/integration_contract_task_sync.md,architecture_review_minutes
+移动端预览卡片限制,蒋予,P1,2026-04-26,done,标题 36 字规则已合入前端,,客户反馈复盘会,data/docs/customer_feedback_round1.md,customer_feedback_review_minutes
+人工标注样本冻结,陈墨,P0,2026-04-25,in_progress,已到 60 条但 2 条只有聊天证据,等待苏晴补脱敏描述,评测口径校准会,data/docs/evaluation_acceptance_plan.md,evaluation_calibration_minutes
+evidence_id 字段导出,周岚,P0,2026-04-26,in_progress,新输出已有字段，旧 mock output 未兼容,兼容旧 mock output,评测口径校准会,data/docs/architecture_structured_pipeline.md,evaluation_calibration_minutes
+FAQ 预览态话术,苏晴,P0,2026-04-26,done,待确认创建文案已替换,,客户反馈复盘会,data/docs/customer_feedback_round1.md,customer_feedback_review_minutes
+客户误召回样本补齐,陈墨,P0,2026-05-08,in_progress,60 条已齐但 2 条证据待复核,,上线复盘会,data/docs/customer_feedback_round1.md,launch_retro_minutes
+结构化摘要降级文案,苏晴,P1,2026-04-30,blocked,FAQ 已改一版,产品口径 4/30 才确认,Go/No-Go,data/docs/faq_user_feedback.md,go_no_go_minutes
+任务同步开关演练,赵一诺,P0,2026-04-30,in_progress,演练日志说已通过，但看板未同步,,上线准备检查,data/docs/rollout_observability_plan.md,
+灰度首日 War Room 排班,王越,P1,2026-04-30,done,值班已排完,,上线准备检查,data/calendar/events.json,
+首日摘要成功率日报,周岚,P0,2026-05-01,done,成功率 98.4%-100% 区间,,War Room,data/docs/post_launch_retro.md,
+任务预览确认率统计,王越,P0,2026-05-02,in_progress,聊天记录显示已到 81%,,War Room,data/docs/post_launch_retro.md,
+证据片段缺失率面板,赵一诺,P1,2026-05-03,blocked,日志字段已出,面板过滤条件未联调,灰度第三天指标复核,data/docs/rollout_observability_plan.md,
+长会议 P95 专项优化,周岚,P0,2026-05-08,in_progress,最新 9.1 秒，仍未 <=9 秒,连续两轮未达 gate,上线复盘会,data/docs/post_launch_retro.md,launch_retro_minutes
+blocked 无 blocker 清理,王越,P0,2026-05-07,todo,复盘会要求清理,,上线复盘会,data/base/priority_board.csv,launch_retro_minutes
+FAQ 降级说明更新,苏晴,P1,2026-05-08,done,聊天里说已改好，但 task 仍 todo,,上线复盘会,data/docs/faq_user_feedback.md,launch_retro_minutes
+50% 灰度决策会,林舟,P0,2026-05-08,todo,等待 P95 和误召回样本,依赖 task_042 和 task_043,上线复盘会,data/calendar/events.json,launch_retro_minutes
+移动端证据片段 UI 验收,蒋予,P1,2026-05-12,todo,折叠态已完成 mock 验收,,灰度反馈,data/docs/customer_feedback_round1.md,customer_feedback_review_minutes
+历史会议权限变更调研,何澈,P2,2026-05-15,todo,不阻塞本轮灰度,,安全评审会,data/docs/security_privacy_design.md,security_review_minutes
+正式任务标题 36 字联调,赵一诺,P1,2026-05-10,in_progress,preview payload 已加，正式系统未接,等待移动端最终稿,客户反馈复盘会,data/docs/integration_contract_task_sync.md,customer_feedback_review_minutes
+自动周报 2.1 边界说明,林舟,P2,2026-05-14,todo,确认不进复赛 demo,,需求追踪矩阵,data/docs/requirements_traceability_matrix.md,requirement_alignment_minutes
+会前背景包资料不足提示,王越,P1,2026-05-09,todo,规则已写入权限边界文档,,权限边界文档,data/docs/permission_model_data_boundary.md,
+FAQ 命中率样本统计,韩知远,P1,2026-05-09,in_progress,初步 72%，样本量偏小,等待苏晴确认分类口径,客户反馈汇总,data/docs/customer_feedback_round1.md,
+Reconciler 输出字段验收,陈墨,P1,2026-05-09,todo,待跑冲突样例,,评测方案,data/docs/evaluation_acceptance_plan.md,evaluation_calibration_minutes
+上线复盘行动项同步,王越,P0,2026-05-07,done,聊天记录 msg_129 已同步,,上线复盘会,data/chats/project_chat.jsonl,launch_retro_minutes
+权限日志抽检报告,何澈,P1,2026-05-10,todo,5/10 截止，不阻塞 5/8 决策,,上线复盘会,data/docs/security_privacy_design.md,launch_retro_minutes
+语义权限灰名单,何澈,P1,2026-05-06,done,规则表已提交,待法务确认,安全评审会,data/docs/security_privacy_design.md,security_review_minutes
+录音转写降级开关,赵一诺,P1,2026-05-04,todo,灰度环境已启用测试开关,,上线准备检查,data/docs/rollout_observability_plan.md,

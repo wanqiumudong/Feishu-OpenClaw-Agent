@@ -1,4 +1,6 @@
 from distribution.renderer import render_pre_meeting_brief, sources_from_items
+from llm.client import LLMClient
+from orchestration.llm_tasks import llm_brief_summary
 from providers.mock_provider import MockProvider
 from retrieval.indexer import build_index
 from retrieval.retriever import retrieve
@@ -26,7 +28,23 @@ def build_pre_meeting_brief(provider: MockProvider, event_id: str):
             "推进总表中是否还有漏记的行动项？",
         ],
     }
+    llm_summary = _try_llm_summary(provider, event, matches)
+    if llm_summary:
+        sections["ai_summary"] = llm_summary
     return render_pre_meeting_brief(event, sections, sources)
+
+
+def _try_llm_summary(provider: MockProvider, event: dict, matches) -> str:
+    settings = getattr(provider, "settings", None)
+    if not settings:
+        return ""
+    client = LLMClient(settings)
+    if not client.available or not matches:
+        return ""
+    try:
+        return llm_brief_summary(client, event, matches)
+    except Exception:
+        return ""
 
 
 def _required_docs(event: dict) -> list[str]:
