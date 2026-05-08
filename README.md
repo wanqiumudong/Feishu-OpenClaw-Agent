@@ -113,13 +113,19 @@ bash scripts/run_full_demo.sh
 
 ## 飞书 Bot 使用方式
 
-启动服务：
+如果飞书后台选择“长连接接收事件”，启动长连接客户端：
+
+```bash
+meetingflow-feishu-ws
+```
+
+如果飞书后台选择“回调地址”模式，启动 HTTP 服务：
 
 ```bash
 meetingflow-server --host 0.0.0.0 --port 8080
 ```
 
-然后把飞书开发者后台的事件订阅地址配置为：
+回调地址模式需要把飞书开发者后台的事件订阅地址配置为：
 
 ```text
 https://<public-domain>/feishu/events

@@ -18,6 +18,7 @@ meetingflow = "main:main"
 meetingflow-eval = "evaluation.run_eval:main"
 meetingflow-data = "evaluation.generate_data:main"
 meetingflow-server = "server.main:main"
+meetingflow-feishu-ws = "server.ws_main:main"
 
 [tool.setuptools]
 py-modules = ["config", "main", "models"]
