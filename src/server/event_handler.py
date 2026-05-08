@@ -12,6 +12,19 @@ from providers.mock_provider import MockProvider
 from server.message_router import route_message
 
 
+HELP_MARKDOWN = """# MeetingFlow Agent
+
+我可以处理会议和项目推进相关问题：
+
+- 会前背景包：发送“请生成会前背景包”
+- 会后行动项：发送“请整理会后行动项”
+- 推进表对账：发送“请做推进表对账”
+- 带来源问答：直接提问，例如“Go/No-Go 灰度发布有哪些阻塞？”
+- 全局主题分析：发送包含“全局”或“主题”的问题
+
+当前回复会保留来源或证据线索，高风险写入默认需要显式开关。"""
+
+
 def handle_feishu_event(payload: dict[str, Any], headers: dict[str, str], settings: Settings) -> dict[str, Any]:
     challenge = payload.get("challenge")
     if isinstance(challenge, str) and challenge:
@@ -23,9 +36,23 @@ def handle_feishu_event(payload: dict[str, Any], headers: dict[str, str], settin
 
     event = _message_event(payload)
     routed = route_message(event["text"])
+    distributor = FeishuSdkDistributor(settings)
+    if routed.workflow == "help":
+        delivery = distributor.send_text(event["chat_id"], HELP_MARKDOWN)
+        return _mask_payload(
+            {
+                "status": "ok",
+                "event_type": event_type,
+                "workflow": routed.workflow,
+                "reply_style": "text",
+                "run_id": "",
+                "tool_calls": 0,
+                "delivery": asdict(delivery),
+            }
+        )
+
     runtime = AgentRuntime(settings, _build_provider(settings))
     trace = runtime.execute(routed.workflow, routed.payload)
-    distributor = FeishuSdkDistributor(settings)
 
     reply_style = "text" if settings.reply_mode == "text" else routed.reply_style
     if reply_style == "card":

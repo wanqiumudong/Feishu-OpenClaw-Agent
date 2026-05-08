@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 from config import Settings
 from server.app import create_app
 from server.event_handler import handle_feishu_event
-from server.message_router import route_message
+from server.message_router import normalize_message_text, route_message
 from server.ws_client import build_message_payload
 
 
@@ -48,11 +48,16 @@ class ServerTest(unittest.TestCase):
         self.assertEqual(response.json(), {"challenge": "challenge-token"})
 
     def test_route_message_selects_workflows(self):
+        self.assertEqual(route_message("@_user_1 你能做什么").workflow, "help")
+        self.assertEqual(route_message("help").workflow, "help")
         self.assertEqual(route_message("请生成会前背景包").workflow, "pre_meeting")
         self.assertEqual(route_message("请整理会后行动项").workflow, "post_meeting")
         self.assertEqual(route_message("推进表对账").workflow, "reconcile")
         self.assertEqual(route_message("项目全局主题").workflow, "graphrag_global")
         self.assertEqual(route_message("上次技术评审风险是什么").workflow, "graphrag_local")
+
+    def test_normalize_message_text_removes_feishu_mentions(self):
+        self.assertEqual(normalize_message_text("@_user_1 你能做什么"), "你能做什么")
 
     def test_message_event_runs_agent_and_dry_run_reply(self):
         client = TestClient(create_app(self.settings))
@@ -78,6 +83,29 @@ class ServerTest(unittest.TestCase):
         self.assertTrue(payload["delivery"]["ok"])
         self.assertNotIn("oc_secret_chat", str(payload))
         self.assertNotIn("ou_secret_user", str(payload))
+
+    def test_message_event_help_reply_does_not_run_runtime(self):
+        client = TestClient(create_app(self.settings))
+        event = {
+            "schema": "2.0",
+            "header": {"event_type": "im.message.receive_v1"},
+            "event": {
+                "message": {
+                    "chat_id": "oc_secret_chat",
+                    "message_id": "om_test_message",
+                    "content": "{\"text\":\"@_user_1 你能做什么\"}",
+                },
+                "sender": {"sender_id": {"open_id": "ou_secret_user"}},
+            },
+        }
+
+        response = client.post("/feishu/events", json=event)
+
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["workflow"], "help")
+        self.assertEqual(payload["tool_calls"], 0)
+        self.assertTrue(payload["delivery"]["ok"])
 
     def test_direct_handler_ignores_unsupported_event(self):
         result = handle_feishu_event(
