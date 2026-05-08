@@ -9,20 +9,7 @@ from distribution.sdk_distributor import FeishuSdkDistributor
 from orchestration.runtime import AgentRuntime
 from providers.lark_cli_provider import LarkCliProvider
 from providers.mock_provider import MockProvider
-from server.message_router import route_message
-
-
-HELP_MARKDOWN = """# MeetingFlow Agent
-
-我可以处理会议和项目推进相关问题：
-
-- 会前背景包：发送“请生成会前背景包”
-- 会后行动项：发送“请整理会后行动项”
-- 推进表对账：发送“请做推进表对账”
-- 带来源问答：直接提问，例如“Go/No-Go 灰度发布有哪些阻塞？”
-- 全局主题分析：发送包含“全局”或“主题”的问题
-
-当前回复会保留来源或证据线索，高风险写入默认需要显式开关。"""
+from server.message_router import build_capability_markdown, route_message
 
 
 def handle_feishu_event(payload: dict[str, Any], headers: dict[str, str], settings: Settings) -> dict[str, Any]:
@@ -38,7 +25,7 @@ def handle_feishu_event(payload: dict[str, Any], headers: dict[str, str], settin
     routed = route_message(event["text"])
     distributor = FeishuSdkDistributor(settings)
     if routed.workflow == "help":
-        delivery = distributor.send_text(event["chat_id"], HELP_MARKDOWN)
+        delivery = distributor.send_text(event["chat_id"], build_capability_markdown())
         return _mask_payload(
             {
                 "status": "ok",

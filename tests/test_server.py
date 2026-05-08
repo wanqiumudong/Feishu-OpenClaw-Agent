@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 from config import Settings
 from server.app import create_app
 from server.event_handler import handle_feishu_event
-from server.message_router import normalize_message_text, route_message
+from server.message_router import build_capability_markdown, normalize_message_text, route_message
 from server.ws_client import build_message_payload
 
 
@@ -51,10 +51,21 @@ class ServerTest(unittest.TestCase):
         self.assertEqual(route_message("@_user_1 你能做什么").workflow, "help")
         self.assertEqual(route_message("help").workflow, "help")
         self.assertEqual(route_message("请生成会前背景包").workflow, "pre_meeting")
+        self.assertEqual(route_message("明天评审会前需要准备什么").workflow, "pre_meeting")
         self.assertEqual(route_message("请整理会后行动项").workflow, "post_meeting")
+        self.assertEqual(route_message("这次会议有哪些负责人和截止时间").workflow, "post_meeting")
         self.assertEqual(route_message("推进表对账").workflow, "reconcile")
+        self.assertEqual(route_message("有哪些事项状态不一致").workflow, "reconcile")
         self.assertEqual(route_message("项目全局主题").workflow, "graphrag_global")
         self.assertEqual(route_message("上次技术评审风险是什么").workflow, "graphrag_local")
+
+    def test_capability_markdown_is_generated_from_route_catalog(self):
+        markdown = build_capability_markdown()
+
+        self.assertIn("会前背景包", markdown)
+        self.assertIn("会后行动项", markdown)
+        self.assertIn("推进总表对账", markdown)
+        self.assertIn("全局主题分析", markdown)
 
     def test_normalize_message_text_removes_feishu_mentions(self):
         self.assertEqual(normalize_message_text("@_user_1 你能做什么"), "你能做什么")
