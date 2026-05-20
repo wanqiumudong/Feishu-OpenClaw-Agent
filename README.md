@@ -166,9 +166,3 @@ meetingflow-eval full --scale 10
 - dry-run safety
 - 合成数据规模测试
 - 真实飞书 smoke check
-
-## 参考
-
-- Microsoft GraphRAG: https://github.com/microsoft/graphrag
-- GraphRAG Local Search: https://microsoft.github.io/graphrag/query/local_search/
-- GraphRAG Global Search: https://microsoft.github.io/graphrag/query/global_search/
